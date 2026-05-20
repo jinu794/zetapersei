@@ -381,8 +381,17 @@ button {
     flex-wrap: wrap; /* 화면 작아지면 줄바꿈 */
 }
 
-/* 영상 스타일 */
-.slides video {
+/* 포트폴리오 링크 */
+.portfolio-link {
+    display: block;
+    border-radius: 15px;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+/* 영상/이미지 스타일 */
+.slides video,
+.slides img {
     width: 300px;
     height: 200px;
     object-fit: cover;
@@ -393,8 +402,15 @@ button {
 }
 
 /* hover 효과 */
-.slides video:hover {
+.slides video:hover,
+.slides img:hover {
     transform: scale(1.05);
+}
+
+.video-title {
+    margin: 12px 0 0;
+    color: #c6c6c6;
+    font-size: 14px;
 }
 
 .slides {
