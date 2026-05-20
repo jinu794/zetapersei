@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Zeta Persei DRONE STUDIO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loader" aria-hidden="true">
+    <div class="loader-mark">Zeta</div>
+</div>
+
+<header class="header">
+    <div class="logo">Zeta</div>
+    <nav>
+        <div class="menu">
+            <button class="nav-button" data-section="about" onclick="scrollToSection('about')">회사소개</button>
+            <div class="dropdown">
+                <a href="about.html">회사소개</a>
+                <a href="#">인사말</a>
+                <a href="#">오시는 길</a>
+            </div>
+        </div>
+        <div class="menu">
+            <button class="nav-button" data-section="services" onclick="scrollToSection('services')">서비스</button>
+            <div class="dropdown">
+                <a href="#">드론 촬영</a>
+                <a href="#">영상 제작</a>
+                <a href="#">교육</a>
+            </div>
+        </div>
+        <div class="menu">
+            <button class="nav-button" data-section="weather" onclick="scrollToSection('weather')">날씨</button>
+        </div>
+        <div class="menu">
+            <button class="nav-button" data-section="portfolio" onclick="scrollToSection('portfolio')">포트폴리오</button>
+        </div>
+        <div class="menu">
+            <button class="nav-button" data-section="contact" onclick="scrollToSection('contact')">온라인 문의</button>
+        </div>
+        <div class="menu">
+            <button onclick="goPage('customer.html')">고객센터</button>
+        </div>
+    </nav>
+</header>
+
+<section class="hero">
+    <video autoplay muted loop playsinline id="bgVideo">
+        <source src="img/hero-spring.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <h1>Capture the Sky</h1>
+        <p>드론 영상으로 공간의 분위기와 스토리를 기록합니다.</p>
+        <button onclick="scrollToSection('portfolio')">VIEW WORK</button>
+    </div>
+</section>
+
+<section id="weather" class="section fade">
+    <h2>FLIGHT WEATHER</h2>
+    <p class="section-description">Today's flight condition at your location, or Seoul if location access is unavailable.</p>
+    <div class="weather-panel">
+        <div class="weather-status-card">
+            <p class="weather-kicker">Today's Flight Status</p>
+            <div id="flightStatus" class="flight-status loading">Checking...</div>
+            <p id="weatherLocation" class="weather-location">Preparing local weather data</p>
+        </div>
+        <div class="weather-metrics">
+            <div class="weather-metric">
+                <span class="metric-label">Wind</span>
+                <strong id="windSpeed">--</strong>
+                <span class="metric-unit">km/h</span>
+            </div>
+            <div class="weather-metric">
+                <span class="metric-label">Rain</span>
+                <strong id="precipitation">--</strong>
+                <span class="metric-unit">mm</span>
+            </div>
+            <div class="weather-metric">
+                <span class="metric-label">Temp</span>
+                <strong id="temperature">--</strong>
+                <span class="metric-unit">C</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="section fade">
+    <h2>ABOUT</h2>
+    <p>드론 촬영, 영상 제작, 교육까지 브랜드와 현장을 입체적으로 담아내는 스튜디오입니다.</p>
+    <div class="stats">
+        <div class="stat-card">
+            <span class="count" data-target="120">0</span><span class="plus">+</span>
+            <p>촬영 프로젝트</p>
+        </div>
+        <div class="stat-card">
+            <span class="count" data-target="850">0</span><span class="plus">+</span>
+            <p>비행시간</p>
+        </div>
+        <div class="stat-card">
+            <span class="count" data-target="30">0</span><span class="plus">+</span>
+            <p>고객상담</p>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="section fade">
+    <h2>SERVICES</h2>
+    <div class="cards">
+        <div class="card">드론 촬영</div>
+        <div class="card">영상 제작</div>
+        <div class="card">드론 교육</div>
+    </div>
+</section>
+
+<section id="portfolio" class="section fade">
+    <h2>WORK</h2>
+    <div class="slider">
+        <div class="slides" id="slides">
+            <a href="https://youtu.be/ALN1OTDqQmQ" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="ALN1OTDqQmQ">
+                <video autoplay muted loop>
+                    <source src="img/portfolio-quarry.mp4" type="video/mp4">
+                </video>
+                <p class="video-title">안산 대부광산 퇴적암층</p>
+            </a>
+            <a href="https://youtu.be/FA5QLWY4PZw?si=U7tqR9pLWdq8gY5Y" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="FA5QLWY4PZw">
+                <video autoplay muted loop>
+                    <source src="img/portfolio-lake.mp4" type="video/mp4">
+                </video>
+                <p class="video-title">오산시 서랑저수지</p>
+            </a>
+            <a href="https://youtu.be/hqQlX9Q5oTc?si=clD0ouQJDGztQRxe" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="hqQlX9Q5oTc">
+                <video autoplay muted loop>
+                    <source src="img/hero-spring.mp4" type="video/mp4">
+                </video>
+                <p class="video-title">눈이 내리는 봄 풍경</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section fade">
+    <h2>CONTACT</h2>
+    <p class="contact-intro">조금만 정보를 남겨주세요. 확인 후 빠르게 연락드리겠습니다.</p>
+    <div class="contact-form">
+        <div class="form-group">
+            <label for="name">이름 / 기업명</label>
+            <input type="text" id="name" placeholder="예: Zeta Persei">
+        </div>
+        <div class="form-group">
+            <label for="phone">연락처 / 이메일</label>
+            <input type="text" id="phone" placeholder="010-1234-5678 or hello@example.com">
+        </div>
+        <div class="form-group">
+            <label for="msg">문의 내용</label>
+            <textarea id="msg" placeholder="촬영 목적, 희망 일정, 장소 등 간단한 내용을 적어주세요."></textarea>
+        </div>
+        <div class="contact-actions">
+            <button id="sendButton" onclick="sendMsg()">SEND MESSAGE</button>
+            <p id="formStatus" class="form-status" aria-live="polite"></p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>Zeta Persei DRONE STUDIO</h3>
+            <p>Aerial filming and cinematic production for brands, places, and events.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Quick Menu</h4>
+            <a href="about.html">About</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>Email. hello@zetapersei.kr</p>
+            <p>Tel. 010-1234-5678</p>
+            <p>Seoul, Korea</p>
+        </div>
+    </div>
+    <p class="copy">&copy; 2026 Zeta Persei DRONE STUDIO. All rights reserved.</p>
+</footer>
+
+<div id="videoModal" class="video-modal" aria-hidden="true">
+    <div class="video-modal-backdrop" data-close-modal="true"></div>
+    <div class="video-modal-dialog" role="dialog" aria-modal="true" aria-label="Portfolio video player">
+        <button id="videoModalClose" class="video-modal-close" type="button" aria-label="Close video">×</button>
+        <div class="video-frame-wrap">
+            <iframe
+                id="videoModalFrame"
+                src=""
+                title="Portfolio video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
+
+<button id="topBtn" type="button" onclick="scrollToTop()" aria-label="Top">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
