@@ -7,6 +7,38 @@ function goPage(url) {
     window.location.href = url;
 }
 
+// ================= MOBILE NAV / THEME =================
+const navToggle = document.getElementById("navToggle");
+const mobileNav = document.getElementById("mobileNav");
+const themeToggle = document.getElementById("themeToggle");
+
+function toggleMobileNav() {
+    if (!mobileNav || !navToggle) return;
+    const open = mobileNav.classList.toggle("open");
+    mobileNav.setAttribute("aria-hidden", String(!open));
+    navToggle.setAttribute("aria-expanded", String(open));
+}
+
+if (navToggle) {
+    navToggle.addEventListener("click", toggleMobileNav);
+}
+
+function applyTheme(theme) {
+    document.body.classList.toggle("dark", theme === "dark");
+    if (themeToggle) themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
+    localStorage.setItem("site-theme", theme);
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        const next = document.body.classList.contains("dark") ? "light" : "dark";
+        applyTheme(next);
+    });
+}
+
+// initialize theme from storage
+applyTheme(localStorage.getItem("site-theme") || "dark");
+
 // ================= SCROLL MOVE =================
 function scrollToSection(id) {
     const section = document.getElementById(id);
@@ -37,31 +69,69 @@ function sendMsg() {
     const msgValue = msg.value.trim();
 
     if (!nameValue || !phoneValue || !msgValue) {
-        formStatus.textContent = "All fields are required.";
+        formStatus.textContent = "모든 항목을 입력해주세요.";
         formStatus.className = "form-status error";
         (!nameValue ? name : !phoneValue ? phone : msg).focus();
         return;
     }
 
     if (msgValue.length < 10) {
-        formStatus.textContent = "Please add a little more detail to the message.";
+        formStatus.textContent = "문의 내용을 좀 더 자세히 적어주세요.";
         formStatus.className = "form-status error";
         msg.focus();
         return;
     }
 
+    // 간단한 연락처 형식 검사 (이메일 또는 전화번호)
+    const isEmail = phoneValue.includes("@");
+    if (isEmail) {
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRe.test(phoneValue)) {
+            formStatus.textContent = "유효한 이메일 주소를 입력해주세요.";
+            formStatus.className = "form-status error";
+            phone.focus();
+            return;
+        }
+    } else {
+        const phoneRe = /[0-9]{8,15}/;
+        if (!phoneRe.test(phoneValue.replace(/[^0-9]/g, ""))) {
+            formStatus.textContent = "유효한 전화번호를 입력해주세요.";
+            formStatus.className = "form-status error";
+            phone.focus();
+            return;
+        }
+    }
+
     sendButton.disabled = true;
-    formStatus.textContent = "Sending your message...";
+    formStatus.textContent = "메시지를 전송중입니다...";
     formStatus.className = "form-status";
 
-    window.setTimeout(() => {
-        formStatus.textContent = "Message sent. We will get back to you soon.";
-        formStatus.className = "form-status success";
+    // Mock backend: save to localStorage
+    try {
+        const messages = JSON.parse(localStorage.getItem('zeta_messages') || '[]');
+        messages.push({
+            name: nameValue,
+            contact: phoneValue,
+            message: msgValue,
+            receivedAt: new Date().toISOString(),
+            status: 'queued'
+        });
+        localStorage.setItem('zeta_messages', JSON.stringify(messages));
+
+        // Simulate network latency
+        window.setTimeout(() => {
+            formStatus.textContent = "메시지가 전송되었습니다. 빠르게 연락드리겠습니다.";
+            formStatus.className = "form-status success";
+            sendButton.disabled = false;
+            name.value = "";
+            phone.value = "";
+            msg.value = "";
+        }, 700);
+    } catch (err) {
+        formStatus.textContent = "전송 중 오류가 발생했습니다. 다시 시도해주세요.";
+        formStatus.className = "form-status error";
         sendButton.disabled = false;
-        name.value = "";
-        phone.value = "";
-        msg.value = "";
-    }, 700);
+    }
 }
 
 // ================= FADE ANIMATION =================
@@ -78,8 +148,13 @@ const videoModalClose = document.getElementById("videoModalClose");
 const flightStatus = document.getElementById("flightStatus");
 const weatherLocation = document.getElementById("weatherLocation");
 const windSpeed = document.getElementById("windSpeed");
+const windDirection = document.getElementById("windDirection");
 const precipitation = document.getElementById("precipitation");
 const temperature = document.getElementById("temperature");
+const humidity = document.getElementById("humidity");
+const sunriseEl = document.getElementById("sunrise");
+const sunsetEl = document.getElementById("sunset");
+const forecastList = document.getElementById("forecastList");
 const trackedSections = [...navButtons]
     .map((button) => document.getElementById(button.dataset.section))
     .filter(Boolean);
@@ -93,8 +168,20 @@ function updateWeatherStatus(status, locationText, values) {
     flightStatus.textContent = status.label;
     weatherLocation.textContent = locationText;
     windSpeed.textContent = values.wind.toFixed(1);
+    if (windDirection) windDirection.textContent = (values.windDir ?? "--");
     precipitation.textContent = values.rain.toFixed(1);
     temperature.textContent = values.temp.toFixed(1);
+    if (humidity) humidity.textContent = (values.humidity ?? 0).toFixed(0);
+    if (sunriseEl) sunriseEl.textContent = values.sunrise || "—";
+    if (sunsetEl) sunsetEl.textContent = values.sunset || "—";
+
+    // build a small 3-day forecast
+    if (forecastList && values.forecast && Array.isArray(values.forecast)) {
+        forecastList.innerHTML = values.forecast
+            .slice(0, 3)
+            .map((d) => `<div class="forecast-item"><strong>${d.date}</strong><span>${d.min}° / ${d.max}°</span></div>`)
+            .join("");
+    }
 }
 
 function getFlightCondition(values) {
@@ -115,22 +202,41 @@ async function fetchFlightWeather(latitude, longitude, locationLabel) {
     }
 
     try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,precipitation,wind_speed_10m&timezone=auto`;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=relativehumidity_2m,precipitation&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum&timezone=auto`;
         const response = await fetch(url);
 
-        if (!response.ok) {
-            throw new Error("Weather request failed");
-        }
+        if (!response.ok) throw new Error("Weather request failed");
 
         const data = await response.json();
-        const current = data.current || {};
-        const values = {
-            wind: Number(current.wind_speed_10m ?? 0),
-            rain: Number(current.precipitation ?? 0),
-            temp: Number(current.temperature_2m ?? 0)
-        };
-        const status = getFlightCondition(values);
 
+        const cw = data.current_weather || {};
+        // open-meteo returns windspeed in m/s in some params; prefer cw.windspeed (m/s) -> km/h
+        const windKmh = cw.windspeed ? Number(cw.windspeed) * 3.6 : 0;
+
+        // attempt to read hourly index for humidity & precipitation
+        let humidityVal = 0;
+        let precipVal = 0;
+        if (data.hourly && Array.isArray(data.hourly.time)) {
+            const nowISO = new Date().toISOString().slice(0, 13) + ":00";
+            const idx = data.hourly.time.indexOf(nowISO);
+            if (idx >= 0) {
+                humidityVal = Number((data.hourly.relativehumidity_2m && data.hourly.relativehumidity_2m[idx]) || 0);
+                precipVal = Number((data.hourly.precipitation && data.hourly.precipitation[idx]) || 0);
+            }
+        }
+
+        const values = {
+            wind: Number(windKmh || 0),
+            windDir: cw.winddirection ?? "--",
+            rain: Number(precipVal || 0),
+            temp: Number(cw.temperature ?? 0),
+            humidity: Number(humidityVal || 0),
+            sunrise: data.daily && data.daily.sunrise ? (data.daily.sunrise[0] || "—") : "—",
+            sunset: data.daily && data.daily.sunset ? (data.daily.sunset[0] || "—") : "—",
+            forecast: (data.daily && data.daily.time) ? data.daily.time.map((d, i) => ({ date: d, min: data.daily.temperature_2m_min[i], max: data.daily.temperature_2m_max[i] })) : []
+        };
+
+        const status = getFlightCondition(values);
         updateWeatherStatus(status, locationLabel, values);
     } catch (error) {
         flightStatus.className = "flight-status caution";
@@ -254,6 +360,59 @@ function initVideoModal() {
         if (event.key === "Escape" && videoModal.classList.contains("open")) {
             closeVideoModal();
         }
+    });
+}
+
+// ================= PORTFOLIO FILTER / CAROUSEL =================
+const filterBtns = document.querySelectorAll(".filter-btn");
+const slides = document.getElementById("slides");
+const prevSlide = document.getElementById("prevSlide");
+const nextSlide = document.getElementById("nextSlide");
+
+function applyFilter(filter) {
+    const items = slides ? slides.querySelectorAll(".portfolio-link") : [];
+    items.forEach((it) => {
+        const cat = it.dataset.category || "all";
+        it.style.display = filter === "all" || cat === filter ? "block" : "none";
+    });
+}
+
+filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        applyFilter(btn.dataset.filter);
+    });
+});
+
+if (prevSlide && nextSlide && slides) {
+    prevSlide.addEventListener("click", () => {
+        slides.scrollBy({ left: -340, behavior: "smooth" });
+    });
+
+    nextSlide.addEventListener("click", () => {
+        slides.scrollBy({ left: 340, behavior: "smooth" });
+    });
+
+    // simple touch support
+    let isDown = false, startX, scrollLeft;
+    slides.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        slides.classList.add('dragging');
+        startX = e.pageX - slides.offsetLeft;
+        scrollLeft = slides.scrollLeft;
+        slides.setPointerCapture(e.pointerId);
+    });
+    slides.addEventListener("pointermove", (e) => {
+        if (!isDown) return;
+        const x = e.pageX - slides.offsetLeft;
+        const walk = (x - startX) * 1; //scroll-fast
+        slides.scrollLeft = scrollLeft - walk;
+    });
+    slides.addEventListener("pointerup", (e) => {
+        isDown = false;
+        slides.classList.remove('dragging');
+        slides.releasePointerCapture(e.pointerId);
     });
 }
 

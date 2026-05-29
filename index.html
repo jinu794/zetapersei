@@ -12,6 +12,10 @@
 
 <header class="header">
     <div class="logo">Zeta</div>
+    <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Toggle navigation">☰</button>
+    <div class="header-actions">
+        <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌓</button>
+    </div>
     <nav>
         <div class="menu">
             <button class="nav-button" data-section="about" onclick="scrollToSection('about')">회사소개</button>
@@ -42,6 +46,16 @@
             <button onclick="goPage('customer.html')">고객센터</button>
         </div>
     </nav>
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true">
+        <nav role="navigation">
+            <a href="#about" onclick="toggleMobileNav();scrollToSection('about')">회사소개</a>
+            <a href="#services" onclick="toggleMobileNav();scrollToSection('services')">서비스</a>
+            <a href="#weather" onclick="toggleMobileNav();scrollToSection('weather')">날씨</a>
+            <a href="#portfolio" onclick="toggleMobileNav();scrollToSection('portfolio')">포트폴리오</a>
+            <a href="#contact" onclick="toggleMobileNav();scrollToSection('contact')">온라인 문의</a>
+            <a href="customer.html">고객센터</a>
+        </nav>
+    </div>
 </header>
 
 <section class="hero">
@@ -62,12 +76,21 @@
             <p class="weather-kicker">Today's Flight Status</p>
             <div id="flightStatus" class="flight-status loading">Checking...</div>
             <p id="weatherLocation" class="weather-location">Preparing local weather data</p>
+            <div class="weather-extra">
+                <span id="sunrise" class="sun-item">—</span>
+                <span id="sunset" class="sun-item">—</span>
+            </div>
         </div>
         <div class="weather-metrics">
             <div class="weather-metric">
                 <span class="metric-label">Wind</span>
                 <strong id="windSpeed">--</strong>
                 <span class="metric-unit">km/h</span>
+            </div>
+            <div class="weather-metric">
+                <span class="metric-label">Wind Dir</span>
+                <strong id="windDirection">--</strong>
+                <span class="metric-unit">°</span>
             </div>
             <div class="weather-metric">
                 <span class="metric-label">Rain</span>
@@ -79,7 +102,13 @@
                 <strong id="temperature">--</strong>
                 <span class="metric-unit">C</span>
             </div>
+            <div class="weather-metric">
+                <span class="metric-label">Humidity</span>
+                <strong id="humidity">--</strong>
+                <span class="metric-unit">%</span>
+            </div>
         </div>
+        <div class="weather-forecast" id="forecastList" aria-live="polite"></div>
     </div>
 </section>
 
@@ -113,21 +142,72 @@
 
 <section id="portfolio" class="section fade">
     <h2>WORK</h2>
+    <div class="portfolio-controls">
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="aerial">Aerial</button>
+            <button class="filter-btn" data-filter="production">Production</button>
+            <button class="filter-btn" data-filter="teaching">Teaching</button>
+        </div>
+        <div class="carousel-controls">
+            <button id="prevSlide" aria-label="Previous">‹</button>
+            <button id="nextSlide" aria-label="Next">›</button>
+        </div>
+    </div>
     <div class="slider">
         <div class="slides" id="slides">
-            <a href="https://youtu.be/ALN1OTDqQmQ" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="ALN1OTDqQmQ">
+            <a href="https://youtu.be/ALN1OTDqQmQ" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="ALN1OTDqQmQ" data-category="aerial">
                 <img src="https://img.youtube.com/vi/ALN1OTDqQmQ/maxresdefault.jpg" alt="안산 대부광산 퇴적암층">
                 <p class="video-title">안산 대부광산 퇴적암층</p>
             </a>
-            <a href="https://youtu.be/FA5QLWY4PZw?si=U7tqR9pLWdq8gY5Y" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="FA5QLWY4PZw">
+            <a href="https://youtu.be/FA5QLWY4PZw?si=U7tqR9pLWdq8gY5Y" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="FA5QLWY4PZw" data-category="production">
                 <img src="https://img.youtube.com/vi/FA5QLWY4PZw/maxresdefault.jpg" alt="오산시 서랑저수지">
                 <p class="video-title">오산시 서랑저수지</p>
             </a>
-            <a href="https://youtu.be/hqQlX9Q5oTc?si=clD0ouQJDGztQRxe" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="hqQlX9Q5oTc">
+            <a href="https://youtu.be/hqQlX9Q5oTc?si=clD0ouQJDGztQRxe" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="hqQlX9Q5oTc" data-category="teaching">
                 <img src="https://img.youtube.com/vi/hqQlX9Q5oTc/maxresdefault.jpg" alt="눈이 내리는 봄 풍경">
                 <p class="video-title">눈이 내리는 봄 풍경</p>
             </a>
         </div>
+    </div>
+</section>
+
+<section id="reviews" class="section fade">
+    <h2>REVIEWS</h2>
+    <div class="reviews-list">
+        <blockquote>탁월한 촬영 퀄리티 — 고객 A</blockquote>
+        <blockquote>빠른 대응과 친절함 — 고객 B</blockquote>
+    </div>
+</section>
+
+<section id="process" class="section fade">
+    <h2>PROCESS</h2>
+    <ol class="process-list">
+        <li>문의 → 상담</li>
+        <li>견적 → 계약</li>
+        <li>촬영 → 편집</li>
+        <li>납품 → 피드백</li>
+    </ol>
+</section>
+
+<section id="faq" class="section fade">
+    <h2>FAQ</h2>
+    <details>
+        <summary>드론 촬영 가능 지역은?</summary>
+        <p>법적 제한이 있는 지역을 제외한 전 지역입니다. 촬영 전 허가가 필요할 수 있습니다.</p>
+    </details>
+    <details>
+        <summary>촬영 소요 시간은?</summary>
+        <p>촬영 범위와 편집 수준에 따라 달라집니다. 일반적으로 1~5일 내외입니다.</p>
+    </details>
+</section>
+
+<section id="map" class="section fade">
+    <h2>LOCATION</h2>
+    <p class="section-description">오시는 길 (대략적인 위치)</p>
+    <div class="map-wrap">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=126.96%2C37.55%2C126.99%2C37.58&layer=mapnik" style="border:0;width:100%;height:320px;" loading="lazy" title="Map"></iframe>
+        <small><a href="https://www.openstreetmap.org">View on OpenStreetMap</a></small>
     </div>
 </section>
 
