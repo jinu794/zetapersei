@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Admin - Zeta Persei</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <div class="logo">Zeta Admin</div>
+    <nav>
+        <div class="menu"><button onclick="goPage('index.html')">사이트로 이동</button></div>
+    </nav>
+</header>
+<main style="padding:120px 20px;">
+    <h1>수신된 문의</h1>
+    <div id="messagesWrap"></div>
+</main>
+<script>
+function goPage(url){ window.location.href = url }
+
+function formatDate(iso){ try { return new Date(iso).toLocaleString(); } catch(e){ return iso } }
+
+function renderMessages(){
+    const wrap = document.getElementById('messagesWrap');
+    const messages = JSON.parse(localStorage.getItem('zeta_messages') || '[]');
+    if(!messages.length){ wrap.innerHTML = '<p>메시지가 없습니다.</p>'; return; }
+    wrap.innerHTML = messages.map((m, i) => `
+        <section class="admin-message">
+            <header>
+                <strong>${m.name}</strong> — <small>${m.contact}</small>
+                <div class="admin-actions">
+                    <button data-i="${i}" class="mark-btn">${m.status === 'done' ? '완료 취소' : '완료'}</button>
+                    <button data-i="${i}" class="del-btn">삭제</button>
+                </div>
+            </header>
+            <p>${m.message}</p>
+            ${m.attachment ? `<div class="admin-attachment">첨부: ${m.attachment.name} <br/> ${m.attachment.type.startsWith('image/') ? '<img src="'+m.attachment.data+'" style="max-width:240px"/>' : ''}</div>` : ''}
+            <footer><small>${formatDate(m.receivedAt)} — 상태: ${m.status}</small></footer>
+        </section>
+    `).join('');
+
+    // attach button handlers
+    document.querySelectorAll('.del-btn').forEach(btn => btn.addEventListener('click', (e) => {
+        const i = Number(e.target.dataset.i);
+        messages.splice(i,1);
+        localStorage.setItem('zeta_messages', JSON.stringify(messages));
+        renderMessages();
+    }));
+
+    document.querySelectorAll('.mark-btn').forEach(btn => btn.addEventListener('click', (e) => {
+        const i = Number(e.target.dataset.i);
+        messages[i].status = messages[i].status === 'done' ? 'queued' : 'done';
+        localStorage.setItem('zeta_messages', JSON.stringify(messages));
+        renderMessages();
+    }));
+}
+
+renderMessages();
+</script>
+</body>
+</html>

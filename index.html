@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Zeta Persei DRONE STUDIO</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#111">
 </head>
 <body>
 <div id="loader" aria-hidden="true">
@@ -41,6 +43,9 @@
         </div>
         <div class="menu">
             <button class="nav-button" data-section="contact" onclick="scrollToSection('contact')">온라인 문의</button>
+        </div>
+        <div class="menu">
+            <button onclick="goPage('admin.html')">관리자</button>
         </div>
         <div class="menu">
             <button onclick="goPage('customer.html')">고객센터</button>
@@ -140,6 +145,35 @@
     </div>
 </section>
 
+<section id="estimate" class="section fade">
+    <h2>ESTIMATE</h2>
+    <p class="section-description">간단한 촬영 견적을 확인해보세요.</p>
+    <div class="estimate-card">
+        <label>서비스 타입
+            <select id="estService">
+                <option value="aerial">드론 촬영</option>
+                <option value="production">영상 제작</option>
+                <option value="teaching">드론 교육</option>
+            </select>
+        </label>
+        <label>촬영 시간 (시간)
+            <input type="number" id="estHours" min="1" value="2">
+        </label>
+        <label>편집 옵션
+            <select id="estEdit">
+                <option value="basic">기본 편집</option>
+                <option value="pro">고급 편집 (+30%)</option>
+            </select>
+        </label>
+        <div class="estimate-result">
+            <strong>견적:</strong> <span id="estOutput">₩ --</span>
+        </div>
+        <div class="estimate-actions">
+            <button id="calcEstimate">계산하기</button>
+        </div>
+    </div>
+</section>
+
 <section id="portfolio" class="section fade">
     <h2>WORK</h2>
     <div class="portfolio-controls">
@@ -226,8 +260,11 @@
         <div class="form-group">
             <label for="msg">문의 내용</label>
             <textarea id="msg" placeholder="촬영 목적, 희망 일정, 장소 등 간단한 내용을 적어주세요."></textarea>
-        </div>
-        <div class="contact-actions">
+        </div>        <div class="form-group">
+            <label for="attachment">첨부파일 (선택)</label>
+            <input type="file" id="attachment" accept="image/*,video/*">
+            <div id="attachmentPreview" class="attachment-preview" aria-hidden="true"></div>
+        </div>        <div class="contact-actions">
             <button id="sendButton" onclick="sendMsg()">SEND MESSAGE</button>
             <p id="formStatus" class="form-status" aria-live="polite"></p>
         </div>

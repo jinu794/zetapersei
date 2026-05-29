@@ -10,6 +10,51 @@ body.loading {
     overflow: hidden;
 }
 
+/* Light theme overrides */
+body.light {
+    background: #f7f7f7;
+    color: #0b0b0b;
+}
+
+body.light .header {
+    background: rgba(255,255,255,0.95);
+    color: #111;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+body.light .logo,
+body.light .menu button,
+body.light nav a,
+body.light .dropdown a {
+    color: #111;
+}
+
+body.light button {
+    background: #111;
+    color: #fff;
+}
+
+body.light .card,
+body.light .stat-card,
+body.light .weather-status-card,
+body.light .weather-metric,
+body.light .contact-form {
+    background: #fff;
+    color: #111;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: none;
+}
+
+body.light .overlay { background: rgba(255,255,255,0.06) }
+
+/* ensure inputs readable in light mode */
+body.light .contact-form input,
+body.light .contact-form textarea {
+    background: #fff;
+    color: #111;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
 #loader {
     position: fixed;
     inset: 0;
@@ -438,6 +483,20 @@ button {
     .mobile-nav.open { transform: translateY(0) }
     .mobile-nav nav { display:flex; flex-direction:column; gap:18px; padding: 80px 20px }
 }
+
+/* estimate */
+.estimate-card { max-width:720px; margin: 18px auto; padding: 18px; background: rgba(255,255,255,0.03); border-radius: 12px }
+.estimate-card label { display:block; margin-bottom:12px }
+.estimate-card input, .estimate-card select { width:100%; padding:8px; margin-top:6px }
+.estimate-result { margin: 12px 0; font-size:18px }
+
+/* attachment preview */
+.attachment-preview img { max-width:240px; display:block; margin-top:8px }
+
+/* admin */
+.admin-message { border:1px solid rgba(255,255,255,0.06); padding:12px; margin-bottom:12px; border-radius:8px }
+.admin-message header { display:flex; justify-content:space-between; align-items:center }
+.admin-actions button { margin-left:8px }
 
 /* 포트폴리오 링크 */
 .portfolio-link {

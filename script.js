@@ -24,7 +24,9 @@ if (navToggle) {
 }
 
 function applyTheme(theme) {
-    document.body.classList.toggle("dark", theme === "dark");
+    // clear previous theme classes and set the requested one explicitly
+    document.body.classList.remove("dark", "light");
+    document.body.classList.add(theme === "dark" ? "dark" : "light");
     if (themeToggle) themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
     localStorage.setItem("site-theme", theme);
 }
@@ -36,7 +38,7 @@ if (themeToggle) {
     });
 }
 
-// initialize theme from storage
+// initialize theme from storage (default: dark)
 applyTheme(localStorage.getItem("site-theme") || "dark");
 
 // ================= SCROLL MOVE =================
@@ -58,10 +60,11 @@ function scrollToTop() {
 }
 
 // ================= CONTACT =================
-function sendMsg() {
+async function sendMsg() {
     const name = document.getElementById("name");
     const phone = document.getElementById("phone");
     const msg = document.getElementById("msg");
+    const attachmentInput = document.getElementById("attachment");
     const sendButton = document.getElementById("sendButton");
     const formStatus = document.getElementById("formStatus");
     const nameValue = name.value.trim();
@@ -106,19 +109,34 @@ function sendMsg() {
     formStatus.textContent = "메시지를 전송중입니다...";
     formStatus.className = "form-status";
 
-    // Mock backend: save to localStorage
+    // handle attachment (optional)
+    let attachmentData = null;
+    if (attachmentInput && attachmentInput.files && attachmentInput.files.length) {
+        const file = attachmentInput.files[0];
+        try {
+            attachmentData = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve({ name: file.name, type: file.type, data: reader.result });
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        } catch (e) {
+            console.warn('Attachment read failed', e);
+        }
+    }
+
     try {
         const messages = JSON.parse(localStorage.getItem('zeta_messages') || '[]');
         messages.push({
             name: nameValue,
             contact: phoneValue,
             message: msgValue,
+            attachment: attachmentData,
             receivedAt: new Date().toISOString(),
             status: 'queued'
         });
         localStorage.setItem('zeta_messages', JSON.stringify(messages));
 
-        // Simulate network latency
         window.setTimeout(() => {
             formStatus.textContent = "메시지가 전송되었습니다. 빠르게 연락드리겠습니다.";
             formStatus.className = "form-status success";
@@ -126,6 +144,11 @@ function sendMsg() {
             name.value = "";
             phone.value = "";
             msg.value = "";
+            if (attachmentInput) {
+                attachmentInput.value = "";
+                const preview = document.getElementById('attachmentPreview');
+                if (preview) { preview.innerHTML = ''; preview.setAttribute('aria-hidden','true'); }
+            }
         }, 700);
     } catch (err) {
         formStatus.textContent = "전송 중 오류가 발생했습니다. 다시 시도해주세요.";
@@ -416,6 +439,27 @@ if (prevSlide && nextSlide && slides) {
     });
 }
 
+function initEstimate() {
+    const calcBtn = document.getElementById('calcEstimate');
+    const serviceEl = document.getElementById('estService');
+    const hoursEl = document.getElementById('estHours');
+    const editEl = document.getElementById('estEdit');
+    const out = document.getElementById('estOutput');
+    if (!calcBtn || !serviceEl || !hoursEl || !editEl || !out) return;
+
+    function calc() {
+        const baseRates = { aerial: 120000, production: 200000, teaching: 90000 };
+        const service = serviceEl.value;
+        const hours = Math.max(1, Number(hoursEl.value) || 1);
+        const edit = editEl.value;
+        let total = baseRates[service] * hours;
+        if (edit === 'pro') total *= 1.3;
+        out.textContent = '₩ ' + Math.round(total).toLocaleString();
+    }
+
+    calcBtn.addEventListener('click', calc);
+}
+
 function animateCounter(counter) {
     const target = Number(counter.dataset.target || 0);
     const duration = 1400;
@@ -510,6 +554,38 @@ window.addEventListener("load", () => {
         initFlightWeather();
         initVideoPlaybackObserver();
         initVideoModal();
+        // initialize estimate calculator
+        initEstimate();
+
+        // attachment preview handler
+        const attach = document.getElementById('attachment');
+        const preview = document.getElementById('attachmentPreview');
+        if (attach && preview) {
+            attach.addEventListener('change', () => {
+                preview.innerHTML = '';
+                if (attach.files && attach.files.length) {
+                    const file = attach.files[0];
+                    if (/^image\//.test(file.type)) {
+                        const img = document.createElement('img');
+                        img.src = URL.createObjectURL(file);
+                        img.alt = file.name;
+                        img.style.maxWidth = '100%';
+                        preview.appendChild(img);
+                        preview.setAttribute('aria-hidden', 'false');
+                    } else {
+                        preview.textContent = file.name;
+                        preview.setAttribute('aria-hidden', 'false');
+                    }
+                } else {
+                    preview.setAttribute('aria-hidden', 'true');
+                }
+            });
+        }
+
+        // register service worker for PWA support
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+        }
     }, 900);
 });
 
