@@ -22,10 +22,35 @@ body.light .header {
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
-body.light .logo,
+body.light .logo {
+    color: #111;
+}
+
+body.light nav {
+    color: #111;
+}
+
 body.light .menu button,
+body.light .nav-button {
+    color: #111;
+}
+
+body.light .nav-button.active::after {
+    background: #111;
+}
+
 body.light nav a,
 body.light .dropdown a {
+    color: #111;
+}
+
+body.light .dropdown {
+    background: rgba(255,255,255,0.9);
+    color: #111;
+}
+
+body.light .theme-toggle {
+    background: rgba(0,0,0,0.08);
     color: #111;
 }
 
@@ -47,7 +72,6 @@ body.light .contact-form {
 
 body.light .overlay { background: rgba(255,255,255,0.06) }
 
-/* ensure inputs readable in light mode */
 body.light .contact-form input,
 body.light .contact-form textarea {
     background: #fff;
