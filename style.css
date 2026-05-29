@@ -42,10 +42,18 @@ body.light .nav-button.active::after {
 body.light nav a,
 body.light .dropdown a {
     color: #111;
+    background: transparent;
 }
 
 body.light .dropdown {
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
+    color: #111;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+body.light .header button,
+body.light .nav-toggle {
+    background: transparent;
     color: #111;
 }
 
@@ -57,6 +65,12 @@ body.light .theme-toggle {
 body.light button {
     background: #111;
     color: #fff;
+}
+
+body.light nav button,
+body.light .menu button {
+    background: transparent;
+    color: #111;
 }
 
 body.light .card,
