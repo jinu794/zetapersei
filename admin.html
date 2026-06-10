@@ -19,6 +19,25 @@
 <script>
 function goPage(url){ window.location.href = url }
 
+function requireAdminAuth() {
+    const auth = localStorage.getItem("zeta_admin_auth");
+    if (auth === "true") return;
+    const code = prompt("관리자 번호 4자리를 입력해주세요.");
+    if (code === null) {
+        goPage('index.html');
+        return;
+    }
+    const trimmed = code.trim();
+    if (trimmed === "0904") {
+        localStorage.setItem("zeta_admin_auth", "true");
+        return;
+    }
+    alert("관리자 번호가 틀렸습니다.");
+    goPage('index.html');
+}
+
+requireAdminAuth();
+
 function formatDate(iso){ try { return new Date(iso).toLocaleString(); } catch(e){ return iso } }
 
 function renderMessages(){

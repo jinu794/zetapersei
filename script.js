@@ -3,8 +3,26 @@ const loader = document.getElementById("loader");
 
 document.body.classList.add("loading");
 
+const ADMIN_CODE = "0904";
+
 function goPage(url) {
     window.location.href = url;
+}
+
+function requestAdminAccess() {
+    const code = prompt("관리자 번호 4자리를 입력해주세요.");
+    if (code === null) return;
+    const trimmed = code.trim();
+    if (!/^\d{4}$/.test(trimmed)) {
+        alert("4자리 숫자로 입력해주세요.");
+        return;
+    }
+    if (trimmed === ADMIN_CODE) {
+        localStorage.setItem("zeta_admin_auth", "true");
+        goPage("admin.html");
+        return;
+    }
+    alert("관리자 번호가 틀렸습니다.");
 }
 
 // ================= MOBILE NAV / THEME =================
