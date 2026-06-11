@@ -92,7 +92,16 @@ function initDropdownMenus() {
     });
 }
 
-initDropdownMenus();
+function initializePage() {
+    initDropdownMenus();
+    initVideoModal();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializePage);
+} else {
+    initializePage();
+}
 
 function scrollToTop() {
     window.scrollTo({
@@ -206,7 +215,6 @@ const topBtn = document.getElementById("topBtn");
 const navButtons = document.querySelectorAll(".nav-button[data-section]");
 const counters = document.querySelectorAll(".count");
 const autoPauseVideos = document.querySelectorAll("#portfolio video");
-const portfolioLinks = document.querySelectorAll(".portfolio-link");
 const videoModal = document.getElementById("videoModal");
 const videoModalFrame = document.getElementById("videoModalFrame");
 const videoModalClose = document.getElementById("videoModalClose");
@@ -379,30 +387,22 @@ function buildEmbedUrl(videoId) {
 }
 
 function parseYoutubeVideoId(url) {
-    try {
-        const parsed = new URL(url);
-        if (parsed.hostname.includes("youtu.be")) {
-            return parsed.pathname.slice(1);
-        }
-
-        if (parsed.hostname.includes("youtube.com")) {
-            if (parsed.searchParams.has("v")) {
-                return parsed.searchParams.get("v");
-            }
-
-            if (parsed.pathname.startsWith("/embed/")) {
-                return parsed.pathname.split("/")[2];
-            }
-        }
-    } catch (err) {
+    if (typeof url !== "string") {
         return null;
     }
 
-    return null;
+    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|shorts\/|watch\?(?:.*&)?v=|v\/))([A-Za-z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
 }
 
 function openVideoModal(videoId) {
     if (!videoModal || !videoModalFrame) {
+        return;
+    }
+
+    if (window.location.protocol === "file:") {
+        window.open(`https://www.youtube.com/watch?v=${videoId}`, "_blank");
         return;
     }
 
@@ -424,20 +424,23 @@ function closeVideoModal() {
 }
 
 function initVideoModal() {
-    if (!portfolioLinks.length || !videoModal) {
+    if (!slides || !videoModal || !videoModalFrame) {
         return;
     }
 
-    portfolioLinks.forEach((link) => {
-        link.addEventListener("click", (event) => {
-            const videoId = link.dataset.videoId || parseYoutubeVideoId(link.href);
-            if (!videoId) {
-                return;
-            }
+    slides.addEventListener("click", (event) => {
+        const link = event.target instanceof HTMLElement ? event.target.closest(".portfolio-link") : null;
+        if (!link || !slides.contains(link)) {
+            return;
+        }
 
-            event.preventDefault();
-            openVideoModal(videoId);
-        });
+        const videoId = link.dataset.videoId || parseYoutubeVideoId(link.href);
+        if (!videoId) {
+            return;
+        }
+
+        event.preventDefault();
+        openVideoModal(videoId);
     });
 
     videoModal.addEventListener("click", (event) => {
@@ -658,7 +661,6 @@ window.addEventListener("load", () => {
         handleScroll();
         initFlightWeather();
         initVideoPlaybackObserver();
-        initVideoModal();
         // initialize estimate calculator
         initEstimate();
 
@@ -688,7 +690,7 @@ window.addEventListener("load", () => {
         }
 
         // register service worker for PWA support
-        if ('serviceWorker' in navigator) {
+        if ('serviceWorker' in navigator && !['localhost', '127.0.0.1'].includes(window.location.hostname)) {
             navigator.serviceWorker.register('/service-worker.js').catch(() => {});
         }
     }, 900);
