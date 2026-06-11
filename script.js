@@ -206,7 +206,7 @@ const topBtn = document.getElementById("topBtn");
 const navButtons = document.querySelectorAll(".nav-button[data-section]");
 const counters = document.querySelectorAll(".count");
 const autoPauseVideos = document.querySelectorAll("#portfolio video");
-const portfolioLinks = document.querySelectorAll(".portfolio-link[data-video-id]");
+const portfolioLinks = document.querySelectorAll(".portfolio-link");
 const videoModal = document.getElementById("videoModal");
 const videoModalFrame = document.getElementById("videoModalFrame");
 const videoModalClose = document.getElementById("videoModalClose");
@@ -377,6 +377,29 @@ function buildEmbedUrl(videoId) {
     return `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
 }
 
+function parseYoutubeVideoId(url) {
+    try {
+        const parsed = new URL(url);
+        if (parsed.hostname.includes("youtu.be")) {
+            return parsed.pathname.slice(1);
+        }
+
+        if (parsed.hostname.includes("youtube.com")) {
+            if (parsed.searchParams.has("v")) {
+                return parsed.searchParams.get("v");
+            }
+
+            if (parsed.pathname.startsWith("/embed/")) {
+                return parsed.pathname.split("/")[2];
+            }
+        }
+    } catch (err) {
+        return null;
+    }
+
+    return null;
+}
+
 function openVideoModal(videoId) {
     if (!videoModal || !videoModalFrame) {
         return;
@@ -406,8 +429,13 @@ function initVideoModal() {
 
     portfolioLinks.forEach((link) => {
         link.addEventListener("click", (event) => {
+            const videoId = link.dataset.videoId || parseYoutubeVideoId(link.href);
+            if (!videoId) {
+                return;
+            }
+
             event.preventDefault();
-            openVideoModal(link.dataset.videoId);
+            openVideoModal(videoId);
         });
     });
 
