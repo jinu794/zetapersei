@@ -365,6 +365,7 @@ function initVideoPlaybackObserver() {
 function buildEmbedUrl(videoId) {
     const params = new URLSearchParams({
         autoplay: "1",
+        mute: "1",
         playsinline: "1",
         rel: "0",
         modestbranding: "1"
