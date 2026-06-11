@@ -94,7 +94,6 @@ function initDropdownMenus() {
 
 function initializePage() {
     initDropdownMenus();
-    initVideoModal();
 }
 
 if (document.readyState === "loading") {
@@ -398,18 +397,43 @@ function parseYoutubeVideoId(url) {
 
 function openVideoModal(videoId) {
     if (!videoModal || !videoModalFrame) {
+        console.warn('openVideoModal: modal elements missing');
         return;
     }
+
+    if (!videoId) {
+        console.warn('openVideoModal: no videoId provided');
+        return;
+    }
+
+    console.log('openVideoModal()', videoId);
 
     if (window.location.protocol === "file:") {
         window.open(`https://www.youtube.com/watch?v=${videoId}`, "_blank");
         return;
     }
 
+    let iframeLoaded = false;
+    function handleLoad() {
+        iframeLoaded = true;
+        try { videoModalFrame.removeEventListener('load', handleLoad); } catch (e) {}
+    }
+
+    videoModalFrame.addEventListener('load', handleLoad);
+    // set src then open modal
     videoModalFrame.src = buildEmbedUrl(videoId);
     videoModal.classList.add("open");
     videoModal.setAttribute("aria-hidden", "false");
     document.body.classList.add("loading");
+
+    // fallback: if iframe doesn't load within 1.5s, open YouTube in new tab
+    setTimeout(() => {
+        if (!iframeLoaded) {
+            console.warn('openVideoModal: iframe failed to load, falling back to YouTube watch page');
+            try { closeVideoModal(); } catch (e) {}
+            window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+        }
+    }, 1500);
 }
 
 function closeVideoModal() {
@@ -435,6 +459,7 @@ function initVideoModal() {
         }
 
         const videoId = link.dataset.videoId || parseYoutubeVideoId(link.href);
+        console.log('portfolio click', { href: link.href, dataVideoId: link.dataset.videoId, parsed: videoId });
         if (!videoId) {
             return;
         }
@@ -661,6 +686,7 @@ window.addEventListener("load", () => {
         handleScroll();
         initFlightWeather();
         initVideoPlaybackObserver();
+        initVideoModal();
         // initialize estimate calculator
         initEstimate();
 
