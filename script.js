@@ -483,22 +483,56 @@ if (prevSlide && nextSlide && slides) {
 
 function initEstimate() {
     const calcBtn = document.getElementById('calcEstimate');
-    const serviceEl = document.getElementById('estService');
+    const serviceEl = document.getElementById('service-type');
+    const detailEl = document.getElementById('detail-service');
     const hoursEl = document.getElementById('estHours');
-    const editEl = document.getElementById('estEdit');
     const out = document.getElementById('estOutput');
-    if (!calcBtn || !serviceEl || !hoursEl || !editEl || !out) return;
+    if (!calcBtn || !serviceEl || !detailEl || !hoursEl || !out) return;
+
+    const detailOptions = {
+        shooting: [
+            { value: 'sensor', label: '일반 센서 드론 촬영 (기본가)', multiplier: 1 },
+            { value: 'fpv', label: '다이나믹 FPV 촬영 (기본가 + 30% 추가)', multiplier: 1.3 },
+            { value: 'premium', label: '프리미엄 종합 패키지 (일반 + FPV 믹스, 기본가 + 50% 추가)', multiplier: 1.5 },
+        ],
+        production: [
+            { value: 'basic-edit', label: '기본 영상 제작 (기본가)', multiplier: 1 },
+            { value: 'grade', label: '컬러 그레이딩 & 모션 추가 (+20%)', multiplier: 1.2 },
+            { value: 'social', label: 'SNS 컷 편집 패키지 (+35%)', multiplier: 1.35 },
+        ],
+        training: [
+            { value: 'basic-course', label: '기본 비행 교육 (기본가)', multiplier: 1 },
+            { value: 'fpv-course', label: 'FPV 실습 훈련 (+20%)', multiplier: 1.2 },
+            { value: 'custom-curriculum', label: '맞춤 커리큘럼 (+40%)', multiplier: 1.4 },
+        ],
+    };
+
+    const baseRates = { shooting: 120000, production: 180000, training: 90000 };
+
+    function updateDetailOptions() {
+        const service = serviceEl.value;
+        const options = detailOptions[service] || detailOptions.shooting;
+        detailEl.innerHTML = options
+            .map((item) => `<option value="${item.value}">${item.label}</option>`)
+            .join('');
+    }
 
     function calc() {
-        const baseRates = { aerial: 120000, production: 200000, teaching: 90000 };
         const service = serviceEl.value;
+        const detail = detailEl.value;
         const hours = Math.max(1, Number(hoursEl.value) || 1);
-        const edit = editEl.value;
-        let total = baseRates[service] * hours;
-        if (edit === 'pro') total *= 1.3;
+        const rate = baseRates[service] || baseRates.shooting;
+        const option = detailOptions[service].find((item) => item.value === detail) || detailOptions[service][0];
+        const multiplier = option ? option.multiplier : 1;
+        const total = rate * hours * multiplier;
         out.textContent = '₩ ' + Math.round(total).toLocaleString();
     }
 
+    serviceEl.addEventListener('change', () => {
+        updateDetailOptions();
+    });
+
+    updateDetailOptions();
     calcBtn.addEventListener('click', calc);
 }
 

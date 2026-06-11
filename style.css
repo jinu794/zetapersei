@@ -12,8 +12,12 @@ body.loading {
 
 /* Light theme overrides */
 body.light {
-    background: #f7f7f7;
+    background: #faf8f3;
     color: #0b0b0b;
+}
+
+body.light .section {
+    background: #faf8f3;
 }
 
 body.light .header {
@@ -77,11 +81,46 @@ body.light .card,
 body.light .stat-card,
 body.light .weather-status-card,
 body.light .weather-metric,
-body.light .contact-form {
+body.light .contact-form,
+body.light .estimate-card {
     background: #fff;
     color: #111;
     border: 1px solid rgba(0,0,0,0.06);
     box-shadow: none;
+}
+
+body.light .estimate-card label {
+    color: #111;
+}
+
+body.light .estimate-card input,
+body.light .estimate-card select {
+    background: #f9f9f9;
+    color: #111;
+    border-color: rgba(0,0,0,0.12);
+}
+
+body.light .estimate-card input:focus,
+body.light .estimate-card select:focus {
+    background: #ffffff;
+    border-color: rgba(0,0,0,0.3);
+}
+
+body.light .estimate-result {
+    color: #111;
+}
+
+body.light .count,
+body.light .plus {
+    color: #111;
+}
+
+body.light .section-description {
+    color: #444;
+}
+
+body.light .stat-card p {
+    color: #666;
 }
 
 body.light .overlay { background: rgba(255,255,255,0.06) }
@@ -442,6 +481,12 @@ button {
     margin-top: 42px;
 }
 
+#about .stat-card,
+#about .stats,
+#about .section-description {
+    text-align: center;
+}
+
 .stat-card {
     min-width: 190px;
     padding: 28px 24px;
@@ -451,11 +496,24 @@ button {
     box-shadow: 0 18px 40px rgba(0,0,0,0.2);
 }
 
-.count,
-.plus {
-    font-size: 44px;
+.stat-value {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.count {
+    font-size: 48px;
     font-weight: 700;
     line-height: 1;
+}
+
+.plus {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: #f5f5f5;
 }
 
 .stat-card p {
@@ -524,10 +582,11 @@ button {
 }
 
 /* estimate */
-.estimate-card { max-width:720px; margin: 18px auto; padding: 18px; background: rgba(255,255,255,0.03); border-radius: 12px }
-.estimate-card label { display:block; margin-bottom:12px }
-.estimate-card input, .estimate-card select { width:100%; padding:8px; margin-top:6px }
-.estimate-result { margin: 12px 0; font-size:18px }
+.estimate-card { max-width:720px; margin: 18px auto; padding: 20px; background: #0f0f0f; color: #ffffff; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+.estimate-card label { display:flex; flex-direction:column; gap:8px; margin-bottom:16px; color:#ffffff; }
+.estimate-card input, .estimate-card select { width:100%; padding:12px 14px; margin-top:0; box-sizing:border-box; border-radius:12px; border:1px solid rgba(255,255,255,0.18); background: #1a1a1a; color: #ffffff; }
+.estimate-card input:focus, .estimate-card select:focus { outline:none; border-color: rgba(255,255,255,0.36); background:#262626; }
+.estimate-result { margin: 12px 0; font-size:18px; color:#ffffff; }
 
 /* attachment preview */
 .attachment-preview img { max-width:240px; display:block; margin-top:8px }

@@ -30,9 +30,9 @@
         <div class="menu">
             <button class="nav-button" data-section="services" onclick="scrollToSection('services')">서비스</button>
             <div class="dropdown">
-                <a href="#">드론 촬영</a>
-                <a href="#">영상 제작</a>
-                <a href="#">교육</a>
+                <a href="service-shooting.html">드론 촬영</a>
+                <a href="service-production.html">영상 제작</a>
+                <a href="service-education.html">교육</a>
             </div>
         </div>
         <div class="menu">
@@ -68,7 +68,7 @@
     <div class="overlay"></div>
     <div class="hero-content">
         <h1>Capture the Sky</h1>
-        <p>드론 영상으로 공간의 분위기와 스토리를 기록합니다.</p>
+        <p>차분한 시네마틱 항공 촬영부터 공간을 압도하는 다이나믹 FPV 촬영까지.</p>
         <button onclick="scrollToSection('portfolio')">VIEW WORK</button>
     </div>
 </section>
@@ -122,15 +122,15 @@
     <p>드론 촬영, 영상 제작, 교육까지 브랜드와 현장을 입체적으로 담아내는 스튜디오입니다.</p>
     <div class="stats">
         <div class="stat-card">
-            <span class="count" data-target="120">0</span><span class="plus">+</span>
+            <div class="stat-value"><span class="count" data-target="40">0</span><span class="plus">회</span></div>
             <p>촬영 프로젝트</p>
         </div>
         <div class="stat-card">
-            <span class="count" data-target="850">0</span><span class="plus">+</span>
-            <p>비행시간</p>
+            <div class="stat-value"><span class="count" data-target="5">0</span><span class="plus">년 차</span></div>
+            <p>비행경력</p>
         </div>
         <div class="stat-card">
-            <span class="count" data-target="30">0</span><span class="plus">+</span>
+            <div class="stat-value"><span class="count" data-target="100">0</span><span class="plus">회 이상</span></div>
             <p>고객상담</p>
         </div>
     </div>
@@ -139,9 +139,18 @@
 <section id="services" class="section fade">
     <h2>SERVICES</h2>
     <div class="cards">
-        <div class="card">드론 촬영</div>
-        <div class="card">영상 제작</div>
-        <div class="card">드론 교육</div>
+        <div class="card">
+            <h3>시네마틱 항공 촬영 (Mini 3 Pro)</h3>
+            <p>경량 센서 드론으로 낮과 밤 모두 부드럽고 세련된 항공 영상을 완성합니다.</p>
+        </div>
+        <div class="card">
+            <h3>익스트림 FPV 촬영 (Avata 2)</h3>
+            <p>실내와 도심을 가로지르는 다이나믹한 FPV 기동으로 현장감을 극대화합니다.</p>
+        </div>
+        <div class="card">
+            <h3>드론 교육 (일반 및 FPV)</h3>
+            <p>기본 비행부터 전문 FPV 테크닉까지 안전 중심의 실전 교육을 제공합니다.</p>
+        </div>
     </div>
 </section>
 
@@ -150,20 +159,21 @@
     <p class="section-description">간단한 촬영 견적을 확인해보세요.</p>
     <div class="estimate-card">
         <label>서비스 타입
-            <select id="estService">
-                <option value="aerial">드론 촬영</option>
-                <option value="production">영상 제작</option>
-                <option value="teaching">드론 교육</option>
+            <select id="service-type">
+                <option value="shooting">드론촬영</option>
+                <option value="production">영상제작</option>
+                <option value="training">드론교육</option>
+            </select>
+        </label>
+        <label>상세 서비스
+            <select id="detail-service">
+                <option value="sensor">일반 센서 드론 촬영 (기본가)</option>
+                <option value="fpv">다이나믹 FPV 촬영 (기본가 + 30% 추가)</option>
+                <option value="premium">프리미엄 종합 패키지 (일반 + FPV 믹스, 기본가 + 50% 추가)</option>
             </select>
         </label>
         <label>촬영 시간 (시간)
             <input type="number" id="estHours" min="1" value="2">
-        </label>
-        <label>편집 옵션
-            <select id="estEdit">
-                <option value="basic">기본 편집</option>
-                <option value="pro">고급 편집 (+30%)</option>
-            </select>
         </label>
         <div class="estimate-result">
             <strong>견적:</strong> <span id="estOutput">₩ --</span>
@@ -180,6 +190,7 @@
         <div class="filters">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="aerial">Aerial</button>
+            <button class="filter-btn" data-filter="fpv">FPV</button>
             <button class="filter-btn" data-filter="production">Production</button>
             <button class="filter-btn" data-filter="teaching">Teaching</button>
         </div>
@@ -194,13 +205,17 @@
                 <img src="https://img.youtube.com/vi/ALN1OTDqQmQ/maxresdefault.jpg" alt="안산 대부광산 퇴적암층">
                 <p class="video-title">안산 대부광산 퇴적암층</p>
             </a>
-            <a href="https://youtu.be/FA5QLWY4PZw?si=U7tqR9pLWdq8gY5Y" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="FA5QLWY4PZw" data-category="production">
-                <img src="https://img.youtube.com/vi/FA5QLWY4PZw/maxresdefault.jpg" alt="오산시 서랑저수지">
-                <p class="video-title">오산시 서랑저수지</p>
+            <a href="https://youtu.be/FA5QLWY4PZw?si=U7tqR9pLWdq8gY5Y" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="FA5QLWY4PZw" data-category="fpv">
+                <img src="https://img.youtube.com/vi/FA5QLWY4PZw/maxresdefault.jpg" alt="Avata 2 FPV 시퀀스">
+                <p class="video-title">Avata 2 FPV Sequence</p>
             </a>
             <a href="https://youtu.be/hqQlX9Q5oTc?si=clD0ouQJDGztQRxe" target="_blank" rel="noreferrer" class="portfolio-link" data-video-id="hqQlX9Q5oTc" data-category="teaching">
                 <img src="https://img.youtube.com/vi/hqQlX9Q5oTc/maxresdefault.jpg" alt="눈이 내리는 봄 풍경">
                 <p class="video-title">눈이 내리는 봄 풍경</p>
+            </a>
+            <a href="https://www.instagram.com/reel/C53GqytP7bg/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer" class="portfolio-link" data-category="production">
+                <img src="https://via.placeholder.com/1280x720/111111/ffffff?text=Instagram+Reel" alt="Instagram Reel 작업물">
+                <p class="video-title">Instagram Reel 작업물</p>
             </a>
         </div>
     </div>
