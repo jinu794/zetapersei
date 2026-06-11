@@ -272,7 +272,8 @@ nav {
 }
 
 /* hover 시 열림 */
-.menu:hover .dropdown {
+.menu:hover .dropdown,
+.menu.open .dropdown {
     display: flex;
 }
 

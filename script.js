@@ -70,6 +70,30 @@ function scrollToSection(id) {
     }
 }
 
+function initDropdownMenus() {
+    const menuButtons = document.querySelectorAll('nav .menu > button');
+    menuButtons.forEach((button) => {
+        const menu = button.closest('.menu');
+        if (!menu || !menu.querySelector('.dropdown')) return;
+
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            menu.classList.toggle('open');
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('nav .menu.open')) {
+            document.querySelectorAll('nav .menu.open').forEach((openMenu) => {
+                openMenu.classList.remove('open');
+            });
+        }
+    });
+}
+
+initDropdownMenus();
+
 function scrollToTop() {
     window.scrollTo({
         top: 0,
