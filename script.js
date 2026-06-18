@@ -452,32 +452,36 @@ function initVideoModal() {
         return;
     }
 
-    slides.addEventListener("click", (event) => {
-        const link = event.target instanceof HTMLElement ? event.target.closest(".portfolio-link") : null;
-        if (!link || !slides.contains(link)) {
-            return;
-        }
+    // 각 포트폴리오 링크에 직접 click 이벤트 바인딩
+    const portfolioLinks = slides.querySelectorAll(".portfolio-link");
+    portfolioLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const videoId = link.dataset.videoId || parseYoutubeVideoId(link.href);
+            console.log('portfolio click', { href: link.href, dataVideoId: link.dataset.videoId, parsed: videoId });
+            
+            if (!videoId) {
+                return;
+            }
 
-        const videoId = link.dataset.videoId || parseYoutubeVideoId(link.href);
-        console.log('portfolio click', { href: link.href, dataVideoId: link.dataset.videoId, parsed: videoId });
-        if (!videoId) {
-            return;
-        }
-
-        event.preventDefault();
-        openVideoModal(videoId);
+            event.preventDefault();
+            event.stopPropagation();
+            openVideoModal(videoId);
+        });
     });
 
+    // 모달 닫기: 백드롭 클릭
     videoModal.addEventListener("click", (event) => {
         if (event.target instanceof HTMLElement && event.target.dataset.closeModal === "true") {
             closeVideoModal();
         }
     });
 
+    // 모달 닫기: X 버튼 클릭
     if (videoModalClose) {
         videoModalClose.addEventListener("click", closeVideoModal);
     }
 
+    // 모달 닫기: ESC 키
     window.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && videoModal.classList.contains("open")) {
             closeVideoModal();
