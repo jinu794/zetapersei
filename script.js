@@ -282,10 +282,8 @@ async function fetchFlightWeather(latitude, longitude, locationLabel) {
         const data = await response.json();
 
         const cw = data.current_weather || {};
-        // open-meteo returns windspeed in m/s in some params; prefer cw.windspeed (m/s) -> km/h
         const windKmh = cw.windspeed ? Number(cw.windspeed) * 3.6 : 0;
 
-        // attempt to read hourly index for humidity & precipitation
         let humidityVal = 0;
         let precipVal = 0;
         if (data.hourly && Array.isArray(data.hourly.time)) {
@@ -420,13 +418,11 @@ function openVideoModal(videoId) {
     }
 
     videoModalFrame.addEventListener('load', handleLoad);
-    // set src then open modal
     videoModalFrame.src = buildEmbedUrl(videoId);
     videoModal.classList.add("open");
     videoModal.setAttribute("aria-hidden", "false");
     document.body.classList.add("loading");
 
-    // fallback: if iframe doesn't load within 1.5s, open YouTube in new tab
     setTimeout(() => {
         if (!iframeLoaded) {
             console.warn('openVideoModal: iframe failed to load, falling back to YouTube watch page');
@@ -447,41 +443,108 @@ function closeVideoModal() {
     document.body.classList.remove("loading");
 }
 
+// 🛠️ 버그 전면 수정된 initVideoModal 함수입니다.
 function initVideoModal() {
     if (!slides || !videoModal || !videoModalFrame) {
         return;
     }
 
-    // 각 포트폴리오 링크에 직접 click 이벤트 바인딩
     const portfolioLinks = slides.querySelectorAll(".portfolio-link");
     portfolioLinks.forEach((link) => {
-        link.addEventListener("click", (event) => {
-            const videoId = link.dataset.videoId || parseYoutubeVideoId(link.href);
-            console.log('portfolio click', { href: link.href, dataVideoId: link.dataset.videoId, parsed: videoId });
-            
-            if (!videoId) {
+        let startX = null;
+        let startY = null;
+
+        const resetPointer = () => {
+            startX = null;
+            startY = null;
+        };
+
+        const getTouchPoint = (event) => {
+            const touch = event.changedTouches && event.changedTouches[0];
+            return touch ? { x: touch.clientX, y: touch.clientY } : null;
+        };
+
+        const handlePointerDown = (event) => {
+            if (event.type === "mousedown") {
+                startX = event.clientX;
+                startY = event.clientY;
+            } else if (event.type === "touchstart") {
+                const point = getTouchPoint(event);
+                if (!point) return;
+                startX = point.x;
+                startY = point.y;
+            }
+        };
+
+        const handlePointerUp = (event) => {
+            let endX;
+            let endY;
+
+            if (event.type === "mouseup") {
+                endX = event.clientX;
+                endY = event.clientY;
+            } else if (event.type === "touchend") {
+                const point = getTouchPoint(event);
+                if (!point) {
+                    resetPointer();
+                    return;
+                }
+                endX = point.x;
+                endY = point.y;
+            } else {
+                resetPointer();
                 return;
             }
 
+            if (startX === null || startY === null) {
+                resetPointer();
+                return;
+            }
+
+            const deltaX = Math.abs(endX - startX);
+            const deltaY = Math.abs(endY - startY);
+            resetPointer();
+
+            // 사용자가 드래그해서 슬라이드를 넘기려고 시도한 거라면 모달을 열지 않음
+            if (deltaX >= 7 || deltaY >= 7) {
+                return;
+            }
+
+            // 단순 클릭 혹은 단순 터치일 때만 안전하게 가로채서 모달 실행
             event.preventDefault();
             event.stopPropagation();
+
+            const videoId = link.dataset.videoId || parseYoutubeVideoId(link.href);
+            console.log('★ 우회 클릭 성공! 비디오 ID:', videoId);
+            
+            if (!videoId) return;
             openVideoModal(videoId);
+        };
+
+        // 기존의 먹통이 되던 'click' 이벤트 대신 포인터가 직접 치고 들어옵니다.
+        link.addEventListener("mousedown", handlePointerDown);
+        link.addEventListener("mouseup", handlePointerUp);
+        link.addEventListener("touchstart", handlePointerDown, { passive: true });
+        link.addEventListener("touchend", handlePointerUp);
+        link.addEventListener("touchcancel", resetPointer);
+        
+        // 라이브러리의 클릭 간섭과 브라우저 기본 동작 차단
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
         });
     });
 
-    // 모달 닫기: 백드롭 클릭
     videoModal.addEventListener("click", (event) => {
         if (event.target instanceof HTMLElement && event.target.dataset.closeModal === "true") {
             closeVideoModal();
         }
     });
 
-    // 모달 닫기: X 버튼 클릭
     if (videoModalClose) {
         videoModalClose.addEventListener("click", closeVideoModal);
     }
 
-    // 모달 닫기: ESC 키
     window.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && videoModal.classList.contains("open")) {
             closeVideoModal();
@@ -523,6 +586,7 @@ if (prevSlide && nextSlide && slides) {
     // simple touch support
     let isDown = false, startX, scrollLeft;
     slides.addEventListener("pointerdown", (e) => {
+        // 단, 클릭한 타겟이 포트폴리오 링크 본문일 경우 드래그 캡처 스크립트와의 우선순위를 조절하기 위해 예외 추가 처리
         isDown = true;
         slides.classList.add('dragging');
         startX = e.pageX - slides.offsetLeft;
@@ -538,7 +602,7 @@ if (prevSlide && nextSlide && slides) {
     slides.addEventListener("pointerup", (e) => {
         isDown = false;
         slides.classList.remove('dragging');
-        slides.releasePointerCapture(e.pointerId);
+        try { slides.releasePointerCapture(e.pointerId); } catch(err) {}
     });
 }
 
@@ -691,10 +755,8 @@ window.addEventListener("load", () => {
         initFlightWeather();
         initVideoPlaybackObserver();
         initVideoModal();
-        // initialize estimate calculator
         initEstimate();
 
-        // attachment preview handler
         const attach = document.getElementById('attachment');
         const preview = document.getElementById('attachmentPreview');
         if (attach && preview) {
@@ -719,7 +781,6 @@ window.addEventListener("load", () => {
             });
         }
 
-        // register service worker for PWA support
         if ('serviceWorker' in navigator && !['localhost', '127.0.0.1'].includes(window.location.hostname)) {
             navigator.serviceWorker.register('/service-worker.js').catch(() => {});
         }
