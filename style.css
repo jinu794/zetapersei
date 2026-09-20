@@ -596,6 +596,157 @@ button {
 .admin-message header { display:flex; justify-content:space-between; align-items:center }
 .admin-actions button { margin-left:8px }
 
+.faq-question-panel,
+.faq-public-list-wrap,
+.faq-admin-section {
+    max-width: 920px;
+    margin: 28px auto 0;
+    padding: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    background: rgba(255,255,255,0.03);
+}
+
+.faq-question-panel h3,
+.faq-public-list-wrap h3,
+.faq-admin-section h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.faq-question-intro {
+    color: #cdcdcd;
+    margin-bottom: 18px;
+}
+
+.faq-question-form {
+    display: grid;
+    gap: 16px;
+}
+
+.faq-public-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.faq-public-item {
+    padding: 18px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.faq-public-item.answered {
+    border-color: rgba(94, 224, 171, 0.4);
+}
+
+.faq-public-item header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.faq-public-question {
+    margin: 0 0 10px;
+    color: #f3f3f3;
+    line-height: 1.7;
+}
+
+.faq-public-meta {
+    margin-bottom: 10px;
+    color: #bfbfbf;
+    font-size: 13px;
+}
+
+.faq-public-answer {
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: #dfe7f5;
+    line-height: 1.7;
+}
+
+.faq-public-answer em {
+    color: #bdbdbd;
+    font-style: normal;
+}
+
+.faq-empty {
+    color: #d3d3d3;
+}
+
+.faq-admin-card {
+    padding: 18px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 18px;
+}
+
+.faq-admin-card.answered {
+    border-color: rgba(94, 224, 171, 0.5);
+}
+
+.faq-admin-card header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.faq-admin-company {
+    display: block;
+    font-size: 13px;
+    color: #bdbdbd;
+    margin-top: 4px;
+}
+
+.faq-admin-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: #bdbdbd;
+}
+
+.faq-admin-question {
+    margin: 0 0 12px;
+    line-height: 1.7;
+    color: #fafafa;
+}
+
+.faq-admin-answer {
+    width: 100%;
+    min-height: 100px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    color: #fff;
+    margin: 0;
+    resize: vertical;
+}
+
+.faq-admin-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.faq-admin-actions button,
+.admin-actions button {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+}
+
 /* 포트폴리오 링크 */
 .portfolio-link {
     display: block;

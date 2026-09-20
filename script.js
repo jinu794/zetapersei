@@ -110,6 +110,42 @@ function scrollToTop() {
 }
 
 // ================= CONTACT =================
+function getFaqQuestions() {
+    try {
+        return JSON.parse(localStorage.getItem('zeta_faq_questions') || '[]');
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveFaqQuestions(questions) {
+    localStorage.setItem('zeta_faq_questions', JSON.stringify(questions));
+}
+
+function renderFaqQuestions() {
+    const wrap = document.getElementById('faqQuestionsList');
+    if (!wrap) return;
+
+    const questions = getFaqQuestions().slice().reverse();
+    if (!questions.length) {
+        wrap.innerHTML = '<p class="faq-empty">아직 등록된 질문이 없습니다.</p>';
+        return;
+    }
+
+    wrap.innerHTML = questions.map((item) => `
+        <article class="faq-public-item ${item.status === 'answered' ? 'answered' : ''}">
+            <header>
+                <strong>업체명 : ${item.company ? item.company : '업체 미입력'}</strong>
+            </header>
+            <p class="faq-public-question">${item.question}</p>
+            <div class="faq-public-meta">${new Date(item.createdAt).toLocaleString()}</div>
+            <div class="faq-public-answer">
+                ${item.answer ? `<strong>답변:</strong> ${item.answer}` : '<em>관리자가 답변을 준비 중입니다.</em>'}
+            </div>
+        </article>
+    `).join('');
+}
+
 async function sendMsg() {
     const name = document.getElementById("name");
     const phone = document.getElementById("phone");
@@ -207,16 +243,75 @@ async function sendMsg() {
     }
 }
 
-// ================= FADE ANIMATION =================
+function createFaqQuestionEntry(event) {
+    event.preventDefault();
+    const form = document.getElementById('faqQuestionForm');
+    if (!form) return;
+
+    const name = document.getElementById('faqName');
+    const company = document.getElementById('faqCompany');
+    const contact = document.getElementById('faqContact');
+    const question = document.getElementById('faqQuestion');
+    const status = document.getElementById('faqStatus');
+    const submitButton = document.getElementById('faqSubmitButton');
+
+    const nameValue = name.value.trim();
+    const companyValue = company.value.trim();
+    const contactValue = contact.value.trim();
+    const questionValue = question.value.trim();
+
+    if (!nameValue || !contactValue || !questionValue) {
+        status.textContent = '필수 항목을 모두 입력해주세요.';
+        status.className = 'form-status error';
+        return;
+    }
+
+    if (questionValue.length < 10) {
+        status.textContent = '질문을 조금 더 자세히 적어주세요.';
+        status.className = 'form-status error';
+        question.focus();
+        return;
+    }
+
+    submitButton.disabled = true;
+    status.textContent = '질문을 등록하고 있습니다...';
+    status.className = 'form-status';
+
+    const questions = getFaqQuestions();
+    questions.push({
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
+        name: nameValue,
+        company: companyValue,
+        contact: contactValue,
+        question: questionValue,
+        answer: '',
+        status: 'pending',
+        createdAt: new Date().toISOString()
+    });
+    saveFaqQuestions(questions);
+    renderFaqQuestions();
+
+    setTimeout(() => {
+        form.reset();
+        status.textContent = '질문이 등록되었습니다. 관리자 확인 후 답변드립니다.';
+        status.className = 'form-status success';
+        submitButton.disabled = false;
+    }, 500);
+}
+
+if (document.getElementById('faqQuestionForm')) {
+    document.getElementById('faqQuestionForm').addEventListener('submit', createFaqQuestionEntry);
+}
+
+renderFaqQuestions();
+
+// ================= FADE ANIMATION & WEATHER =================
 const fades = document.querySelectorAll(".fade");
 const header = document.querySelector(".header");
 const topBtn = document.getElementById("topBtn");
 const navButtons = document.querySelectorAll(".nav-button[data-section]");
 const counters = document.querySelectorAll(".count");
 const autoPauseVideos = document.querySelectorAll("#portfolio video");
-const videoModal = document.getElementById("videoModal");
-const videoModalFrame = document.getElementById("videoModalFrame");
-const videoModalClose = document.getElementById("videoModalClose");
 const flightStatus = document.getElementById("flightStatus");
 const weatherLocation = document.getElementById("weatherLocation");
 const windSpeed = document.getElementById("windSpeed");
@@ -367,191 +462,6 @@ function initVideoPlaybackObserver() {
     autoPauseVideos.forEach((video) => observer.observe(video));
 }
 
-function buildEmbedUrl(videoId) {
-    const params = new URLSearchParams({
-        autoplay: "1",
-        mute: "1",
-        playsinline: "1",
-        rel: "0",
-        modestbranding: "1"
-    });
-
-    if (window.location.protocol.startsWith("http")) {
-        params.set("origin", window.location.origin);
-    }
-
-    return `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
-}
-
-function parseYoutubeVideoId(url) {
-    if (typeof url !== "string") {
-        return null;
-    }
-
-    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|shorts\/|watch\?(?:.*&)?v=|v\/))([A-Za-z0-9_-]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
-}
-
-function openVideoModal(videoId) {
-    if (!videoModal || !videoModalFrame) {
-        console.warn('openVideoModal: modal elements missing');
-        return;
-    }
-
-    if (!videoId) {
-        console.warn('openVideoModal: no videoId provided');
-        return;
-    }
-
-    console.log('openVideoModal()', videoId);
-
-    if (window.location.protocol === "file:") {
-        window.open(`https://www.youtube.com/watch?v=${videoId}`, "_blank");
-        return;
-    }
-
-    let iframeLoaded = false;
-    function handleLoad() {
-        iframeLoaded = true;
-        try { videoModalFrame.removeEventListener('load', handleLoad); } catch (e) {}
-    }
-
-    videoModalFrame.addEventListener('load', handleLoad);
-    videoModalFrame.src = buildEmbedUrl(videoId);
-    videoModal.classList.add("open");
-    videoModal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("loading");
-
-    setTimeout(() => {
-        if (!iframeLoaded) {
-            console.warn('openVideoModal: iframe failed to load, falling back to YouTube watch page');
-            try { closeVideoModal(); } catch (e) {}
-            window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
-        }
-    }, 1500);
-}
-
-function closeVideoModal() {
-    if (!videoModal || !videoModalFrame) {
-        return;
-    }
-
-    videoModal.classList.remove("open");
-    videoModal.setAttribute("aria-hidden", "true");
-    videoModalFrame.src = "";
-    document.body.classList.remove("loading");
-}
-
-// 🛠️ 버그 전면 수정된 initVideoModal 함수입니다.
-function initVideoModal() {
-    if (!slides || !videoModal || !videoModalFrame) {
-        return;
-    }
-
-    const portfolioLinks = slides.querySelectorAll(".portfolio-link");
-    portfolioLinks.forEach((link) => {
-        let startX = null;
-        let startY = null;
-
-        const resetPointer = () => {
-            startX = null;
-            startY = null;
-        };
-
-        const getTouchPoint = (event) => {
-            const touch = event.changedTouches && event.changedTouches[0];
-            return touch ? { x: touch.clientX, y: touch.clientY } : null;
-        };
-
-        const handlePointerDown = (event) => {
-            if (event.type === "mousedown") {
-                startX = event.clientX;
-                startY = event.clientY;
-            } else if (event.type === "touchstart") {
-                const point = getTouchPoint(event);
-                if (!point) return;
-                startX = point.x;
-                startY = point.y;
-            }
-        };
-
-        const handlePointerUp = (event) => {
-            let endX;
-            let endY;
-
-            if (event.type === "mouseup") {
-                endX = event.clientX;
-                endY = event.clientY;
-            } else if (event.type === "touchend") {
-                const point = getTouchPoint(event);
-                if (!point) {
-                    resetPointer();
-                    return;
-                }
-                endX = point.x;
-                endY = point.y;
-            } else {
-                resetPointer();
-                return;
-            }
-
-            if (startX === null || startY === null) {
-                resetPointer();
-                return;
-            }
-
-            const deltaX = Math.abs(endX - startX);
-            const deltaY = Math.abs(endY - startY);
-            resetPointer();
-
-            // 사용자가 드래그해서 슬라이드를 넘기려고 시도한 거라면 모달을 열지 않음
-            if (deltaX >= 7 || deltaY >= 7) {
-                return;
-            }
-
-            // 단순 클릭 혹은 단순 터치일 때만 안전하게 가로채서 모달 실행
-            event.preventDefault();
-            event.stopPropagation();
-
-            const videoId = link.dataset.videoId || parseYoutubeVideoId(link.href);
-            console.log('★ 우회 클릭 성공! 비디오 ID:', videoId);
-            
-            if (!videoId) return;
-            openVideoModal(videoId);
-        };
-
-        // 기존의 먹통이 되던 'click' 이벤트 대신 포인터가 직접 치고 들어옵니다.
-        link.addEventListener("mousedown", handlePointerDown);
-        link.addEventListener("mouseup", handlePointerUp);
-        link.addEventListener("touchstart", handlePointerDown, { passive: true });
-        link.addEventListener("touchend", handlePointerUp);
-        link.addEventListener("touchcancel", resetPointer);
-        
-        // 라이브러리의 클릭 간섭과 브라우저 기본 동작 차단
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-        });
-    });
-
-    videoModal.addEventListener("click", (event) => {
-        if (event.target instanceof HTMLElement && event.target.dataset.closeModal === "true") {
-            closeVideoModal();
-        }
-    });
-
-    if (videoModalClose) {
-        videoModalClose.addEventListener("click", closeVideoModal);
-    }
-
-    window.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && videoModal.classList.contains("open")) {
-            closeVideoModal();
-        }
-    });
-}
-
 // ================= PORTFOLIO FILTER / CAROUSEL =================
 const filterBtns = document.querySelectorAll(".filter-btn");
 const slides = document.getElementById("slides");
@@ -583,29 +493,44 @@ if (prevSlide && nextSlide && slides) {
         slides.scrollBy({ left: 340, behavior: "smooth" });
     });
 
-    // simple touch support
-    let isDown = false, startX, scrollLeft;
+    // 💡 슬라이더 터치/포인터 드래그 제어 스크립트 수정
+    // 드래그 중에는 클릭을 무시하고, 단순 클릭(미세 움직임)일 때만 HTML의 onclick이 완벽히 작동하게 보정했습니다.
+    let isDown = false, startX, scrollLeft, startTimeDrag;
+    
     slides.addEventListener("pointerdown", (e) => {
-        // 단, 클릭한 타겟이 포트폴리오 링크 본문일 경우 드래그 캡처 스크립트와의 우선순위를 조절하기 위해 예외 추가 처리
         isDown = true;
         slides.classList.add('dragging');
         startX = e.pageX - slides.offsetLeft;
         scrollLeft = slides.scrollLeft;
+        startTimeDrag = performance.now();
         slides.setPointerCapture(e.pointerId);
     });
+    
     slides.addEventListener("pointermove", (e) => {
         if (!isDown) return;
         const x = e.pageX - slides.offsetLeft;
         const walk = (x - startX) * 1; //scroll-fast
         slides.scrollLeft = scrollLeft - walk;
     });
+    
     slides.addEventListener("pointerup", (e) => {
         isDown = false;
         slides.classList.remove('dragging');
         try { slides.releasePointerCapture(e.pointerId); } catch(err) {}
+
+        const endTimeDrag = performance.now();
+        const endX = e.pageX - slides.offsetLeft;
+        const walk = Math.abs(endX - startX);
+
+        // 사용자가 슬라이드를 드래그하여 움직인 거리가 7px 이상이거나, 꾹 누르고 오래 머문 드래그라면 클릭 이벤트를 씹어버립니다.
+        if (walk > 7 || (endTimeDrag - startTimeDrag) > 250) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
     });
 }
 
+// ================= ESTIMATE =================
 function initEstimate() {
     const calcBtn = document.getElementById('calcEstimate');
     const serviceEl = document.getElementById('service-type');
@@ -661,6 +586,7 @@ function initEstimate() {
     calcBtn.addEventListener('click', calc);
 }
 
+// ================= SCROLL ANIMATIONS =================
 function animateCounter(counter) {
     const target = Number(counter.dataset.target || 0);
     const duration = 1400;
@@ -744,6 +670,7 @@ function handleScroll() {
     updateTopButton();
 }
 
+// ================= PAGE INITIALIZATION =================
 window.addEventListener("load", () => {
     window.setTimeout(() => {
         if (loader) {
@@ -754,7 +681,6 @@ window.addEventListener("load", () => {
         handleScroll();
         initFlightWeather();
         initVideoPlaybackObserver();
-        initVideoModal();
         initEstimate();
 
         const attach = document.getElementById('attachment');

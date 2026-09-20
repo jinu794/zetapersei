@@ -15,8 +15,15 @@
 <main style="padding:120px 20px;">
     <h1>수신된 문의</h1>
     <div id="messagesWrap"></div>
+
+    <section class="faq-admin-section">
+        <h2>FAQ 고객 질문</h2>
+        <div id="faqAdminWrap"></div>
+    </section>
 </main>
 <script>
+const FAQ_STORAGE_KEY = 'zeta_faq_questions';
+
 function goPage(url){ window.location.href = url }
 
 function requireAdminAuth() {
@@ -75,7 +82,98 @@ function renderMessages(){
     }));
 }
 
+function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    }[char]));
+}
+
+function getFaqQuestions(){
+    try {
+        return JSON.parse(localStorage.getItem(FAQ_STORAGE_KEY) || '[]');
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveFaqQuestions(questions){
+    localStorage.setItem(FAQ_STORAGE_KEY, JSON.stringify(questions));
+}
+
+function renderFaqQuestionsAdmin(){
+    const wrap = document.getElementById('faqAdminWrap');
+    const questions = getFaqQuestions().slice().reverse();
+
+    if (!questions.length) {
+        wrap.innerHTML = '<p>등록된 FAQ 질문이 없습니다.</p>';
+        return;
+    }
+
+    wrap.innerHTML = questions.map((q) => `
+        <section class="faq-admin-card ${q.status === 'answered' ? 'answered' : ''}">
+            <header>
+                <div>
+                    <strong>${escapeHtml(q.name || '고객')}</strong>
+                    <span class="faq-admin-company">업체명 : ${escapeHtml(q.company || '업체 미입력')}</span>
+                </div>
+                <div class="faq-admin-meta">
+                    <small>${escapeHtml(q.contact || '연락처 없음')}</small>
+                    <small>${formatDate(q.createdAt)}</small>
+                </div>
+            </header>
+            <p class="faq-admin-question"><strong>질문:</strong> ${escapeHtml(q.question)}</p>
+            <textarea data-id="${q.id}" class="faq-admin-answer" placeholder="답변을 입력해주세요.">${escapeHtml(q.answer || '')}</textarea>
+            <div class="faq-admin-actions">
+                <button data-id="${q.id}" class="faq-save-btn">답변 저장</button>
+                <button data-id="${q.id}" class="faq-toggle-btn">${q.status === 'answered' ? '미답변 처리' : '답변 완료'}</button>
+                <button data-id="${q.id}" class="faq-delete-btn">삭제</button>
+            </div>
+        </section>
+    `).join('');
+
+    document.querySelectorAll('.faq-save-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+            const id = button.dataset.id;
+            const target = document.querySelector(`.faq-admin-answer[data-id="${CSS.escape(id)}"]`);
+            if (!target) return;
+            const questions = getFaqQuestions();
+            const item = questions.find((entry) => entry.id === id);
+            if (!item) return;
+            item.answer = target.value.trim();
+            if (item.answer && item.status !== 'answered') item.status = 'answered';
+            saveFaqQuestions(questions);
+            renderFaqQuestionsAdmin();
+        });
+    });
+
+    document.querySelectorAll('.faq-toggle-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+            const id = button.dataset.id;
+            const questions = getFaqQuestions();
+            const item = questions.find((entry) => entry.id === id);
+            if (!item) return;
+            item.status = item.status === 'answered' ? 'pending' : 'answered';
+            saveFaqQuestions(questions);
+            renderFaqQuestionsAdmin();
+        });
+    });
+
+    document.querySelectorAll('.faq-delete-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+            const id = button.dataset.id;
+            const questions = getFaqQuestions().filter((entry) => entry.id !== id);
+            saveFaqQuestions(questions);
+            renderFaqQuestionsAdmin();
+        });
+    });
+}
+
 renderMessages();
+renderFaqQuestionsAdmin();
 </script>
 </body>
 </html>

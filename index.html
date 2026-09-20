@@ -201,19 +201,19 @@
     </div>
     <div class="slider">
         <div class="slides" id="slides">
-    <a href="https://youtu.be/ALN1OTDqQmQ" class="portfolio-link" data-category="aerial" data-video-id="ALN1OTDqQmQ">
-        <img src="https://img.youtube.com/vi/ALN1OTDqQmQ/maxresdefault.jpg" alt="안산 대부광산 퇴적암층">
-        <p class="video-title">안산 대부광산 퇴적암층</p>
-    </a>
-    <a href="https://youtu.be/FA5QLWY4PZw" class="portfolio-link" data-category="fpv" data-video-id="FA5QLWY4PZw">
-        <img src="https://img.youtube.com/vi/FA5QLWY4PZw/maxresdefault.jpg" alt="Avata 2 FPV 시퀀스">
-        <p class="video-title">Avata 2 FPV Sequence</p>
-    </a>
-    <a href="https://youtu.be/hqQlX9Q5oTc?si=elJqkAw9CvrLbN0G" class="portfolio-link" data-category="teaching" data-video-id="hqQ1X9Q5oTc">
-        <img src="https://img.youtube.com/vi/hqQlX9Q5oTc/maxresdefault.jpg" alt="눈이 내리는 봄 풍경">
-        <p class="video-title">눈이 내리는 봄 풍경</p>
-    </a>
-</div>
+            <a href="javascript:void(0);" onclick="window.open('https://youtu.be/ALN1OTDqQmQ', '_blank', 'noopener,noreferrer');" class="portfolio-link" data-category="aerial">
+                <img src="https://img.youtube.com/vi/ALN1OTDqQmQ/maxresdefault.jpg" alt="안산 대부광산 퇴적암층">
+                <p class="video-title">안산 대부광산 퇴적암층</p>
+            </a>
+            <a href="javascript:void(0);" onclick="window.open('https://youtu.be/FA5QLWY4PZw', '_blank', 'noopener,noreferrer');" class="portfolio-link" data-category="fpv">
+                <img src="https://img.youtube.com/vi/FA5QLWY4PZw/maxresdefault.jpg" alt="Avata 2 FPV 시퀀스">
+                <p class="video-title">Avata 2 FPV Sequence</p>
+            </a>
+            <a href="javascript:void(0);" onclick="window.open('https://youtu.be/hqQlX9Q5oTc?si=elJqkAw9CvrLbN0G', '_blank', 'noopener,noreferrer');" class="portfolio-link" data-category="teaching">
+                <img src="https://img.youtube.com/vi/hqQlX9Q5oTc/maxresdefault.jpg" alt="눈이 내리는 봄 풍경">
+                <p class="video-title">눈이 내리는 봄 풍경</p>
+            </a>
+        </div>
     </div>
 </section>
 
@@ -245,6 +245,38 @@
         <summary>촬영 소요 시간은?</summary>
         <p>촬영 범위와 편집 수준에 따라 달라집니다. 일반적으로 1~5일 내외입니다.</p>
     </details>
+
+    <div class="faq-question-panel">
+        <h3>추가 질문하기</h3>
+        <p class="faq-question-intro">업체명, 연락처, 질문 내용을 남겨주시면 관리자가 확인 후 답변드립니다.</p>
+        <form id="faqQuestionForm" class="faq-question-form">
+            <div class="form-group">
+                <label for="faqName">고객명</label>
+                <input type="text" id="faqName" placeholder="홍길동" required>
+            </div>
+            <div class="form-group">
+                <label for="faqCompany">업체명</label>
+                <input type="text" id="faqCompany" placeholder="예: ABC 건설">
+            </div>
+            <div class="form-group">
+                <label for="faqContact">연락처 / 이메일</label>
+                <input type="text" id="faqContact" placeholder="010-1234-5678 또는 hello@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="faqQuestion">질문 내용</label>
+                <textarea id="faqQuestion" rows="5" placeholder="문의하실 내용을 자세히 적어주세요." required></textarea>
+            </div>
+            <div class="contact-actions">
+                <button type="submit" id="faqSubmitButton">질문 등록</button>
+                <p id="faqStatus" class="form-status" aria-live="polite"></p>
+            </div>
+        </form>
+    </div>
+
+    <div class="faq-public-list-wrap">
+        <h3>최근 질문 & 답변</h3>
+        <div id="faqQuestionsList" class="faq-public-list"></div>
+    </div>
 </section>
 
 <section id="map" class="section fade">
@@ -271,11 +303,13 @@
         <div class="form-group">
             <label for="msg">문의 내용</label>
             <textarea id="msg" placeholder="촬영 목적, 희망 일정, 장소 등 간단한 내용을 적어주세요."></textarea>
-        </div>        <div class="form-group">
+        </div>
+        <div class="form-group">
             <label for="attachment">첨부파일 (선택)</label>
             <input type="file" id="attachment" accept="image/*,video/*">
             <div id="attachmentPreview" class="attachment-preview" aria-hidden="true"></div>
-        </div>        <div class="contact-actions">
+        </div>
+        <div class="contact-actions">
             <button id="sendButton" onclick="sendMsg()">SEND MESSAGE</button>
             <p id="formStatus" class="form-status" aria-live="polite"></p>
         </div>
@@ -303,22 +337,6 @@
     </div>
     <p class="copy">&copy; 2026 Zeta Persei DRONE STUDIO. All rights reserved.</p>
 </footer>
-
-<div id="videoModal" class="video-modal" aria-hidden="true">
-    <div class="video-modal-backdrop" data-close-modal="true"></div>
-    <div class="video-modal-dialog" role="dialog" aria-modal="true" aria-label="Portfolio video player">
-        <button id="videoModalClose" class="video-modal-close" type="button" aria-label="Close video">×</button>
-        <div class="video-frame-wrap">
-            <iframe
-                id="videoModalFrame"
-                src=""
-                title="Portfolio video"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-        </div>
-    </div>
-</div>
 
 <button id="topBtn" type="button" onclick="scrollToTop()" aria-label="Top">↑</button>
 
