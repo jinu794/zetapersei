@@ -1104,3 +1104,243 @@ input, textarea {
         top: -48px;
     }
 }
+
+/* ================= ABOUT PAGE ================= */
+.about-page {
+    overflow-x: hidden;
+}
+
+.about-page .logo {
+    text-decoration: none;
+    color: inherit;
+}
+
+.about-hero {
+    min-height: 92vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: #101010;
+}
+
+.about-hero-media,
+.about-hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-hero-overlay {
+    background: linear-gradient(90deg, rgba(0,0,0,0.72), rgba(0,0,0,0.18) 70%), linear-gradient(0deg, rgba(0,0,0,0.72), transparent 55%);
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 1;
+    width: min(1100px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 0 0 12vh;
+}
+
+.eyebrow {
+    margin: 0 0 20px;
+    color: rgba(255,255,255,0.62);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    line-height: 1.5;
+}
+
+.about-hero h1,
+.about-section h2,
+.brand-statement h2,
+.philosophy-section h2,
+.showcase-section h2,
+.about-cta h2 {
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.08;
+}
+
+.about-hero h1 {
+    font-size: clamp(48px, 8vw, 104px);
+}
+
+.hero-lead {
+    margin: 24px 0 8px;
+    font-size: clamp(21px, 3vw, 34px);
+}
+
+.hero-copy {
+    margin: 0;
+    color: rgba(255,255,255,0.72);
+    font-size: 15px;
+}
+
+.scroll-cue {
+    position: absolute;
+    right: 24px;
+    bottom: 32px;
+    z-index: 1;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+}
+
+.scroll-cue span { margin-left: 9px; font-size: 16px; }
+
+.about-section {
+    width: min(1100px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 140px 0;
+}
+
+.about-intro {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 10vw;
+    text-align: left;
+}
+
+.about-section h2 {
+    font-size: clamp(38px, 5vw, 68px);
+}
+
+.about-copy-block {
+    color: #bdbdbd;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.about-copy-block p { margin: 0 0 22px; }
+.about-copy-block .lead-copy { color: #f5f5f5; font-size: 19px; line-height: 1.7; }
+
+.brand-statement {
+    min-height: 55vh;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    padding: 70px 24px;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.88)), url('img/instagram-reel.jpg.png') center / cover;
+}
+
+.brand-statement h2 { font-size: clamp(40px, 7vw, 86px); }
+.brand-statement .eyebrow { color: #a9a9a9; }
+
+.section-title-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: flex-end;
+    margin-bottom: 52px;
+}
+
+.section-title-row h2 { font-size: clamp(34px, 4vw, 58px); }
+.section-intro { max-width: 280px; margin: 0; color: #aaa; line-height: 1.8; }
+.about-card-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+
+.about-card {
+    grid-column: span 2;
+    min-height: 220px;
+    padding: 26px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.035);
+    transition: transform 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+}
+
+.about-card:nth-child(4) { grid-column: 2 / span 2; }
+.about-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.24); }
+.card-index, .why-grid span { color: #888; font-size: 12px; letter-spacing: 0.12em; }
+.about-card h3 { margin: 48px 0 14px; font-size: 17px; font-weight: 500; letter-spacing: 0.06em; }
+.about-card p { margin: 0; color: #aaa; line-height: 1.7; font-size: 14px; }
+
+.equipment-section { padding-top: 80px; }
+.equipment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.equipment-card { overflow: hidden; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(255,255,255,0.035); }
+.equipment-visual { min-height: 350px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; background: #1d1d1d; }
+.equipment-visual span { color: rgba(255,255,255,0.6); font-size: 11px; letter-spacing: 0.16em; }
+.equipment-visual strong { font-size: clamp(35px, 5vw, 62px); font-weight: 500; line-height: 0.95; }
+.equipment-visual.mavic { background: linear-gradient(135deg, rgba(0,0,0,0.15), rgba(0,0,0,0.8)), url('img/instagram-reel.jpg.png') center / cover; background-color: #263238; }
+.equipment-visual.avata { background: linear-gradient(135deg, #404040, #101010 75%); }
+.equipment-info { padding: 24px 28px 30px; }
+.equipment-info h3 { margin: 0 0 10px; font-size: 22px; font-weight: 500; }
+.equipment-info p { margin: 0; color: #aaa; line-height: 1.75; font-size: 14px; }
+
+.philosophy-section { background: #0d0d0d; }
+.philosophy-inner { padding-top: 150px; padding-bottom: 150px; }
+.philosophy-copy { margin: 40px 0 70px; color: #c5c5c5; line-height: 1.9; }
+.philosophy-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.philosophy-list > div { padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.3); }
+.philosophy-list h3 { margin: 34px 0 12px; font-size: 18px; font-weight: 500; letter-spacing: 0.1em; }
+.philosophy-list p { margin: 0; color: #aaa; line-height: 1.7; font-size: 14px; }
+
+.showcase-section, .about-cta { position: relative; min-height: 72vh; display: flex; align-items: center; overflow: hidden; }
+.showcase-media, .showcase-overlay, .about-cta-media, .about-cta-overlay { position: absolute; inset: 0; }
+.showcase-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.75); }
+.showcase-overlay, .about-cta-overlay { background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(0,0,0,0.2)), linear-gradient(0deg, rgba(0,0,0,0.5), transparent); }
+.showcase-content, .about-cta-content { position: relative; z-index: 1; width: min(1100px, calc(100% - 48px)); margin: 0 auto; }
+.showcase-content h2, .about-cta h2 { font-size: clamp(42px, 6vw, 82px); }
+.showcase-content > p:not(.eyebrow), .about-cta-content > p:not(.eyebrow) { color: #d1d1d1; margin: 24px 0 30px; }
+.outline-button, .primary-button { display: inline-flex; align-items: center; gap: 12px; padding: 13px 20px; border-radius: 30px; text-decoration: none; font-size: 13px; transition: transform 0.25s ease, background 0.25s ease; }
+.outline-button { border: 1px solid rgba(255,255,255,0.55); color: white; background: rgba(0,0,0,0.12); }
+.primary-button { background: white; color: #111; }
+.outline-button:hover, .primary-button:hover { transform: translateY(-2px); }
+.why-section h2 { margin-bottom: 70px; }
+.why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.why-grid article { padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.25); }
+.why-grid h3 { margin: 28px 0 12px; font-size: 19px; font-weight: 500; }
+.why-grid p { margin: 0; color: #aaa; font-size: 14px; line-height: 1.75; }
+.name-section { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 8vw; }
+.name-section h2 { font-size: clamp(36px, 5vw, 64px); }
+.name-copy { color: #bdbdbd; line-height: 1.9; font-size: 16px; }
+.name-copy p { margin: 0 0 20px; }
+.about-cta { min-height: 68vh; background: #1b1e1f; }
+.about-cta-media { background: linear-gradient(90deg, rgba(25,32,34,0.55), rgba(25,32,34,0.18)), url('img/instagram-reel.jpg.png') center / cover; filter: saturate(0.7); }
+.about-cta-content h2 { font-size: clamp(42px, 6vw, 84px); }
+.cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+body.light .about-page .about-card,
+body.light .about-page .equipment-card { background: #fff; border-color: rgba(0,0,0,0.1); }
+body.light .about-page .about-copy-block,
+body.light .about-page .about-card p,
+body.light .about-page .equipment-info p,
+body.light .about-page .why-grid p,
+body.light .about-page .name-copy,
+body.light .about-page .section-intro { color: #555; }
+body.light .about-page .about-copy-block .lead-copy,
+body.light .about-page .about-card h3,
+body.light .about-page .equipment-info h3 { color: #111; }
+body.light .about-page .philosophy-section { background: #ecebe8; }
+body.light .about-page .philosophy-list p { color: #555; }
+
+@media (max-width: 768px) {
+    .about-hero { min-height: 86vh; }
+    .about-hero-content, .showcase-content, .about-cta-content, .about-section { width: min(100% - 40px, 1100px); }
+    .about-hero-content { padding-bottom: 15vh; }
+    .about-hero h1 { font-size: clamp(42px, 13vw, 68px); }
+    .hero-lead { font-size: 24px; }
+    .hero-copy { max-width: 280px; line-height: 1.6; }
+    .scroll-cue { right: 20px; bottom: 22px; font-size: 9px; }
+    .about-section { padding: 90px 0; }
+    .about-intro, .name-section { grid-template-columns: 1fr; gap: 44px; }
+    .section-title-row { display: block; margin-bottom: 34px; }
+    .section-intro { margin-top: 22px; }
+    .about-card-grid, .equipment-grid, .philosophy-list, .why-grid { grid-template-columns: 1fr; }
+    .about-card, .about-card:nth-child(4) { grid-column: auto; min-height: auto; }
+    .about-card h3 { margin-top: 34px; }
+    .equipment-visual { min-height: 260px; }
+    .philosophy-inner { padding-top: 90px; padding-bottom: 90px; }
+    .philosophy-copy { margin: 32px 0 52px; }
+    .why-section h2 { margin-bottom: 48px; }
+    .why-grid { gap: 28px; }
+    .showcase-section, .about-cta { min-height: 76vh; }
+    .showcase-content h2, .about-cta-content h2 { font-size: clamp(38px, 12vw, 62px); }
+    .cta-actions { align-items: stretch; flex-direction: column; width: max-content; max-width: 100%; }
+    .cta-actions a { justify-content: center; }
+}
