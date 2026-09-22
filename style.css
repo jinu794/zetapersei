@@ -1226,7 +1226,7 @@ input, textarea {
     justify-items: center;
     padding: 70px 24px;
     text-align: center;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.88)), url('img/instagram-reel.jpg.png') center / cover;
+    background: linear-gradient(rgba(0,0,0,0.56), rgba(0,0,0,0.88)), url('img/대부광산 퇴적암층.png') center / cover;
 }
 
 .brand-statement h2 { font-size: clamp(40px, 7vw, 86px); }
@@ -1252,10 +1252,21 @@ input, textarea {
     border-radius: 8px;
     background: rgba(255,255,255,0.035);
     transition: transform 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+    background-position: center;
+    background-size: cover;
 }
 
+.about-card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.86)); pointer-events: none; }
+.about-card { position: relative; isolation: isolate; }
+.about-card > * { position: relative; z-index: 1; }
+.about-card:nth-child(1) { background-image: url('img/대부광산 퇴적암층.png'); }
+.about-card:nth-child(2) { background-image: url('img/오산천.png'); }
+.about-card:nth-child(3) { background-image: url('img/한탄강.png'); }
+.about-card:nth-child(4) { background-image: url('img/오산시 서랑동 서랑저수지.png'); }
+.about-card:nth-child(5) { background-image: url('img/오산천.png'); }
+
 .about-card:nth-child(4) { grid-column: 2 / span 2; }
-.about-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.24); }
+.about-card:hover { transform: translateY(-6px); background-color: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.24); }
 .card-index, .why-grid span { color: #888; font-size: 12px; letter-spacing: 0.12em; }
 .about-card h3 { margin: 48px 0 14px; font-size: 17px; font-weight: 500; letter-spacing: 0.06em; }
 .about-card p { margin: 0; color: #aaa; line-height: 1.7; font-size: 14px; }
@@ -1263,11 +1274,16 @@ input, textarea {
 .equipment-section { padding-top: 80px; }
 .equipment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .equipment-card { overflow: hidden; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(255,255,255,0.035); }
-.equipment-visual { min-height: 350px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; background: #1d1d1d; }
-.equipment-visual span { color: rgba(255,255,255,0.6); font-size: 11px; letter-spacing: 0.16em; }
-.equipment-visual strong { font-size: clamp(35px, 5vw, 62px); font-weight: 500; line-height: 0.95; }
-.equipment-visual.mavic { background: linear-gradient(135deg, rgba(0,0,0,0.15), rgba(0,0,0,0.8)), url('img/instagram-reel.jpg.png') center / cover; background-color: #263238; }
-.equipment-visual.avata { background: linear-gradient(135deg, #404040, #101010 75%); }
+.equipment-visual { min-height: 350px; position: relative; display: flex; overflow: hidden; background: #1d1d1d; }
+.equipment-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.82)); }
+.equipment-visual img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; transition: transform 0.5s ease; }
+.equipment-card:hover .equipment-visual img { transform: scale(1.04); }
+.equipment-visual-copy { position: relative; z-index: 1; width: 100%; padding: 28px; align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; }
+.equipment-visual span { color: rgba(255,255,255,0.72); font-size: 11px; letter-spacing: 0.16em; }
+.equipment-visual strong { font-size: clamp(25px, 3.4vw, 42px); font-weight: 600; line-height: 1; letter-spacing: 0.13em; text-transform: uppercase; }
+.equipment-visual.mavic { background: #263238; }
+.equipment-visual.avata { background: #171717; }
+.equipment-type { margin: 0 0 10px; color: #888; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
 .equipment-info { padding: 24px 28px 30px; }
 .equipment-info h3 { margin: 0 0 10px; font-size: 22px; font-weight: 500; }
 .equipment-info p { margin: 0; color: #aaa; line-height: 1.75; font-size: 14px; }
@@ -1301,12 +1317,12 @@ input, textarea {
 .name-copy { color: #bdbdbd; line-height: 1.9; font-size: 16px; }
 .name-copy p { margin: 0 0 20px; }
 .about-cta { min-height: 68vh; background: #1b1e1f; }
-.about-cta-media { background: linear-gradient(90deg, rgba(25,32,34,0.55), rgba(25,32,34,0.18)), url('img/instagram-reel.jpg.png') center / cover; filter: saturate(0.7); }
+.about-cta-media { background: linear-gradient(90deg, rgba(25,32,34,0.55), rgba(25,32,34,0.18)), url('img/오산시 서랑동 서랑저수지.png') center / cover; filter: saturate(0.7); }
 .about-cta-content h2 { font-size: clamp(42px, 6vw, 84px); }
 .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 body.light .about-page .about-card,
-body.light .about-page .equipment-card { background: #fff; border-color: rgba(0,0,0,0.1); }
+body.light .about-page .equipment-card { background-color: #fff; border-color: rgba(0,0,0,0.1); }
 body.light .about-page .about-copy-block,
 body.light .about-page .about-card p,
 body.light .about-page .equipment-info p,
@@ -1343,4 +1359,598 @@ body.light .about-page .philosophy-list p { color: #555; }
     .showcase-content h2, .about-cta-content h2 { font-size: clamp(38px, 12vw, 62px); }
     .cta-actions { align-items: stretch; flex-direction: column; width: max-content; max-width: 100%; }
     .cta-actions a { justify-content: center; }
+}
+
+/* ================= GREETING PAGE ================= */
+.greeting-page {
+    overflow-x: hidden;
+}
+
+.greeting-page .logo {
+    color: inherit;
+    text-decoration: none;
+}
+
+.greeting-hero {
+    min-height: 88vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: #151515;
+}
+
+.greeting-hero-media,
+.greeting-hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.greeting-hero-overlay {
+    background: linear-gradient(90deg, rgba(0,0,0,0.78), rgba(0,0,0,0.18) 78%), linear-gradient(0deg, rgba(0,0,0,0.78), transparent 60%);
+}
+
+.greeting-hero-content,
+.greeting-cta-content {
+    position: relative;
+    z-index: 1;
+    width: min(1100px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.greeting-hero-content {
+    padding-bottom: 13vh;
+}
+
+.greeting-hero h1 {
+    margin: 0;
+    font-size: clamp(50px, 8vw, 104px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+}
+
+.greeting-hero h1 span {
+    color: rgba(255,255,255,0.74);
+}
+
+.greeting-hero-content > p:last-child {
+    margin: 26px 0 0;
+    color: rgba(255,255,255,0.78);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.greeting-shell {
+    width: min(1100px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.greeting-letter {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 9vw;
+    align-items: start;
+    padding-top: 145px;
+    padding-bottom: 145px;
+}
+
+.greeting-local-visual {
+    position: relative;
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px;
+    overflow: hidden;
+    color: white;
+    background: linear-gradient(160deg, rgba(15,25,27,0.1), rgba(4,4,4,0.9)), url('img/오산천.png') center / cover;
+}
+
+.greeting-local-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.72));
+}
+
+.greeting-local-visual > * {
+    position: relative;
+    z-index: 1;
+}
+
+.greeting-local-visual span {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.72);
+}
+
+.greeting-local-visual strong {
+    font-size: clamp(40px, 5vw, 70px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.04em;
+}
+
+.greeting-local-visual small {
+    max-width: 220px;
+    color: rgba(255,255,255,0.62);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.greeting-letter-copy h2,
+.creator-profile h2,
+.greeting-story h2,
+.approach-section h2,
+.greeting-client h2,
+.greeting-final h2,
+.greeting-cta h2 {
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+}
+
+.greeting-letter-copy h2,
+.creator-profile h2,
+.greeting-story h2,
+.approach-section h2,
+.greeting-client h2,
+.greeting-final h2 {
+    font-size: clamp(38px, 5vw, 68px);
+}
+
+.letter-body {
+    margin-top: 42px;
+    color: #bdbdbd;
+    font-size: 16px;
+    line-height: 1.95;
+}
+
+.letter-body p { margin: 0 0 22px; }
+.letter-body strong { color: #f4f4f4; font-weight: 500; }
+
+.greeting-quote {
+    padding: 150px 24px;
+    text-align: center;
+    background: #101010;
+}
+
+.greeting-quote blockquote {
+    max-width: 920px;
+    margin: 0 auto;
+    color: #f6f6f6;
+    font-size: clamp(34px, 6vw, 78px);
+    font-weight: 400;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+}
+
+.creator-profile {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 10vw;
+    align-items: center;
+    padding-top: 145px;
+    padding-bottom: 145px;
+}
+
+.creator-profile-copy > p:not(.eyebrow) {
+    max-width: 440px;
+    margin: 32px 0 38px;
+    color: #bdbdbd;
+    line-height: 1.85;
+}
+
+.creator-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.22);
+}
+
+.creator-meta strong {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+}
+
+.creator-meta span {
+    color: #929292;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+}
+
+.creator-visual {
+    min-height: 480px;
+    background-image: linear-gradient(160deg, rgba(20,30,31,0.2), rgba(4,4,4,0.9)), url('img/대부광산 퇴적암층.png');
+    background-color: #273133;
+}
+
+.greeting-story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10vw;
+    padding-top: 135px;
+    padding-bottom: 135px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.story-copy {
+    max-width: 520px;
+    color: #bdbdbd;
+    font-size: 16px;
+    line-height: 1.95;
+}
+
+.story-copy p { margin: 0 0 24px; }
+
+.approach-section {
+    padding: 140px 0;
+    background: #0d0d0d;
+}
+
+.approach-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 70px;
+}
+
+.approach-list article {
+    padding: 22px 0 0;
+    border-top: 1px solid rgba(255,255,255,0.3);
+}
+
+.approach-list span {
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+}
+
+.approach-list h3 {
+    margin: 34px 0 12px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+}
+
+.approach-list p {
+    margin: 0;
+    color: #aaa;
+    line-height: 1.75;
+    font-size: 14px;
+}
+
+.greeting-client {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 10vw;
+    padding-top: 145px;
+    padding-bottom: 145px;
+}
+
+.greeting-client .eyebrow { grid-column: 1 / -1; margin-bottom: -60px; }
+.greeting-client h2 { font-size: clamp(38px, 5vw, 68px); }
+.client-copy { color: #bdbdbd; line-height: 1.9; font-size: 16px; }
+.client-copy p { margin: 0 0 18px; }
+
+.greeting-brand {
+    min-height: 48vh;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    padding: 70px 24px;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.9)), url('img/한탄강.png') center / cover;
+}
+
+.greeting-brand h2 { margin: 0; font-size: clamp(40px, 7vw, 86px); font-weight: 400; line-height: 1.08; }
+
+.greeting-final {
+    padding-top: 145px;
+    padding-bottom: 145px;
+    text-align: center;
+}
+
+.greeting-final > p:not(.eyebrow) {
+    margin: 32px auto 40px;
+    color: #bdbdbd;
+    line-height: 1.9;
+}
+
+.greeting-final > strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+.greeting-final > strong span {
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+}
+
+.greeting-cta {
+    position: relative;
+    min-height: 62vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #1b1e1f;
+}
+
+.greeting-cta-media,
+.greeting-cta-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.greeting-cta-media {
+    background: url('img/오산시 서랑동 서랑저수지.png') center / cover;
+    filter: saturate(0.72);
+}
+
+.greeting-cta-overlay {
+    background: linear-gradient(90deg, rgba(0,0,0,0.78), rgba(0,0,0,0.2)), linear-gradient(0deg, rgba(0,0,0,0.56), transparent);
+}
+
+.greeting-cta h2 { font-size: clamp(42px, 6vw, 82px); }
+.greeting-cta .cta-actions { margin-top: 30px; }
+
+body.light .greeting-page .letter-body,
+body.light .greeting-page .creator-profile-copy > p:not(.eyebrow),
+body.light .greeting-page .story-copy,
+body.light .greeting-page .client-copy,
+body.light .greeting-page .greeting-final > p:not(.eyebrow) { color: #555; }
+
+body.light .greeting-page .greeting-quote,
+body.light .greeting-page .approach-section { background: #ecebe8; }
+
+body.light .greeting-page .greeting-quote blockquote,
+body.light .greeting-page .letter-body strong { color: #111; }
+
+@media (max-width: 768px) {
+    .greeting-hero { min-height: 82vh; }
+    .greeting-hero-content, .greeting-cta-content, .greeting-shell { width: min(100% - 40px, 1100px); }
+    .greeting-hero-content { padding-bottom: 14vh; }
+    .greeting-hero h1 { font-size: clamp(44px, 13vw, 68px); }
+    .greeting-hero-content > p:last-child { max-width: 290px; }
+    .greeting-letter, .creator-profile, .greeting-story, .greeting-client { grid-template-columns: 1fr; gap: 52px; }
+    .greeting-letter, .creator-profile, .greeting-story, .greeting-client, .greeting-final { padding-top: 90px; padding-bottom: 90px; }
+    .greeting-local-visual, .creator-visual { min-height: 360px; }
+    .greeting-letter-copy h2, .creator-profile h2, .greeting-story h2, .approach-section h2, .greeting-client h2, .greeting-final h2 { font-size: clamp(36px, 11vw, 56px); }
+    .letter-body { margin-top: 30px; font-size: 15px; line-height: 1.85; }
+    .greeting-quote { padding: 100px 20px; }
+    .greeting-quote blockquote { font-size: clamp(32px, 9vw, 52px); }
+    .approach-section { padding: 90px 0; }
+    .approach-list { grid-template-columns: 1fr; gap: 30px; margin-top: 48px; }
+    .greeting-client .eyebrow { grid-column: auto; margin-bottom: -28px; }
+    .greeting-brand { min-height: 42vh; }
+    .greeting-brand h2 { font-size: clamp(38px, 11vw, 58px); }
+    .greeting-cta { min-height: 66vh; }
+}
+
+/* ================= DIRECTIONS PAGE ================= */
+.directions-page {
+    overflow-x: hidden;
+}
+
+.directions-page .logo {
+    color: inherit;
+    text-decoration: none;
+}
+
+.directions-hero {
+    min-height: 78vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: #151515;
+}
+
+.directions-hero-media,
+.directions-hero-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.directions-hero-media {
+    background: url('img/오산시 서랑동 서랑저수지.png') center / cover;
+    filter: saturate(0.72);
+}
+
+.directions-hero-overlay {
+    background: linear-gradient(90deg, rgba(0,0,0,0.78), rgba(0,0,0,0.2) 78%), linear-gradient(0deg, rgba(0,0,0,0.78), transparent 60%);
+}
+
+.directions-hero-content,
+.directions-cta-content {
+    position: relative;
+    z-index: 1;
+    width: min(1100px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.directions-hero-content {
+    padding-bottom: 13vh;
+}
+
+.directions-hero h1 {
+    margin: 0;
+    font-size: clamp(50px, 8vw, 104px);
+    font-weight: 400;
+    line-height: 1.03;
+}
+
+.directions-hero h1 span {
+    color: rgba(255,255,255,0.72);
+    font-size: 0.72em;
+    letter-spacing: 0.08em;
+}
+
+.directions-hero-content > p:last-child {
+    margin: 25px 0 0;
+    color: rgba(255,255,255,0.78);
+    font-size: 15px;
+}
+
+.directions-shell {
+    width: min(1100px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.location-intro {
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: 20px;
+    align-items: stretch;
+    padding-top: 120px;
+    padding-bottom: 95px;
+}
+
+.map-panel {
+    min-height: 480px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    background: linear-gradient(145deg, #263234, #111718 68%);
+}
+
+.map-panel-grid {
+    position: absolute;
+    inset: -20%;
+    opacity: 0.45;
+    transform: rotate(-12deg);
+    background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 68px 68px;
+}
+
+.map-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 48%, rgba(190,224,211,0.16), transparent 2%, transparent 27%, rgba(0,0,0,0.22) 70%);
+}
+
+.map-panel-pin {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+
+.map-panel-pin::first-letter { transform: rotate(45deg); }
+.map-panel-label { position: absolute; z-index: 1; left: 26px; top: 24px; display: flex; flex-direction: column; gap: 5px; }
+.map-panel-label strong { font-size: 13px; letter-spacing: 0.14em; }
+.map-panel-label span { color: rgba(255,255,255,0.55); font-size: 10px; letter-spacing: 0.14em; }
+.map-notice { position: absolute; z-index: 1; bottom: 22px; left: 26px; margin: 0; color: rgba(255,255,255,0.76); font-size: 12px; line-height: 1.7; }
+.map-notice small { color: rgba(255,255,255,0.5); }
+
+.address-card {
+    padding: 40px 34px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+}
+
+.address-card h2,
+.map-actions h2,
+.directions-section h2,
+.visit-info h2 {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 54px);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.address-row { display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; align-items: center; margin-top: 46px; padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.16); border-bottom: 1px solid rgba(255,255,255,0.16); }
+.address-row > span { color: #888; font-size: 12px; }
+.address-row strong { min-width: 0; font-size: 15px; font-weight: 500; word-break: keep-all; }
+.address-row button { grid-column: 1 / -1; justify-self: start; padding: 9px 14px; border-radius: 8px; background: rgba(255,255,255,0.1); color: white; font-size: 12px; }
+.address-row button:hover { background: rgba(255,255,255,0.2); }
+.address-card dl { margin: 28px 0 0; }
+.address-card dl div { display: grid; grid-template-columns: 70px 1fr; gap: 10px; margin-bottom: 16px; font-size: 14px; }
+.address-card dt { color: #888; }
+.address-card dd { margin: 0; color: #c8c8c8; word-break: break-word; }
+.address-card a { color: inherit; text-decoration: none; }
+.address-card a:hover { color: white; }
+.data-note { margin: 36px 0 0; color: #a7a7a7; font-size: 12px; line-height: 1.7; }
+
+.map-actions { padding-top: 30px; padding-bottom: 120px; }
+.map-actions .section-description { margin-left: 0; text-align: left; }
+.map-action-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.map-action-list button { padding: 13px 18px; border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; background: rgba(255,255,255,0.06); color: #777; cursor: not-allowed; }
+
+.directions-section { padding-top: 115px; padding-bottom: 135px; border-top: 1px solid rgba(255,255,255,0.1); }
+.directions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 58px; }
+.directions-grid article { min-height: 225px; padding: 24px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(255,255,255,0.035); transition: transform 0.3s ease, background 0.3s ease; }
+.directions-grid article:hover { transform: translateY(-5px); background: rgba(255,255,255,0.08); }
+.directions-grid span { color: #888; font-size: 11px; letter-spacing: 0.14em; }
+.directions-grid h3 { margin: 55px 0 14px; font-size: 21px; font-weight: 500; }
+.directions-grid p { margin: 0 0 14px; color: #c5c5c5; line-height: 1.7; font-size: 14px; }
+.directions-grid small { color: #888; line-height: 1.65; font-size: 12px; }
+
+.visit-info { display: grid; grid-template-columns: 1fr 0.9fr; gap: 10vw; align-items: center; padding-top: 110px; padding-bottom: 110px; }
+.visit-info > div:last-child > p { margin: 0 0 26px; color: #bdbdbd; line-height: 1.85; }
+.visit-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.directions-cta { min-height: 62vh; position: relative; display: flex; align-items: center; overflow: hidden; background: #1b1e1f; }
+.directions-cta-media, .directions-cta-overlay { position: absolute; inset: 0; }
+.directions-cta-media { background: url('img/오산천.png') center / cover; filter: saturate(0.75); }
+.directions-cta-overlay { background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(0,0,0,0.2)), linear-gradient(0deg, rgba(0,0,0,0.56), transparent); }
+.directions-cta h2 { margin: 0; font-size: clamp(39px, 6vw, 78px); font-weight: 400; line-height: 1.08; }
+.directions-cta-content > p:not(.eyebrow) { margin: 24px 0 30px; color: #d0d0d0; }
+
+.copy-toast { position: fixed; left: 50%; bottom: 28px; z-index: 1400; padding: 12px 18px; border: 1px solid rgba(255,255,255,0.16); border-radius: 8px; background: rgba(15,15,15,0.92); color: white; font-size: 13px; opacity: 0; visibility: hidden; transform: translate(-50%, 12px); transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease; }
+.copy-toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
+body.light .directions-page .address-card,
+body.light .directions-page .directions-grid article { background-color: #fff; border-color: rgba(0,0,0,0.1); }
+body.light .directions-page .address-card dd,
+body.light .directions-page .directions-grid p,
+body.light .directions-page .visit-info > div:last-child > p { color: #555; }
+
+@media (max-width: 768px) {
+    .directions-hero { min-height: 78vh; }
+    .directions-hero-content, .directions-cta-content, .directions-shell { width: min(100% - 40px, 1100px); }
+    .directions-hero-content { padding-bottom: 14vh; }
+    .directions-hero h1 { font-size: clamp(46px, 13vw, 68px); }
+    .location-intro, .visit-info { grid-template-columns: 1fr; gap: 20px; padding-top: 80px; padding-bottom: 80px; }
+    .map-panel { min-height: 330px; }
+    .address-card { padding: 32px 24px; }
+    .map-actions { padding-bottom: 85px; }
+    .map-action-list { flex-direction: column; }
+    .map-action-list button { width: 100%; min-height: 46px; }
+    .directions-section { padding-top: 85px; padding-bottom: 90px; }
+    .directions-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 40px; }
+    .directions-grid article { min-height: auto; }
+    .directions-grid h3 { margin-top: 32px; }
+    .directions-cta { min-height: 66vh; }
+    .directions-cta h2 { font-size: clamp(37px, 11vw, 60px); }
+    .visit-actions { flex-direction: column; align-items: stretch; }
+    .visit-actions a { justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .directions-page *, .directions-page *::before, .directions-page *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

@@ -2,21 +2,63 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>인사말 - Zeta Persei</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>인사말 | Zeta Persei DRONE STUDIO</title>
+    <meta name="description" content="Zeta Persei DRONE STUDIO의 인사말과 영상 제작 철학을 소개합니다.">
+    <meta property="og:title" content="인사말 | Zeta Persei DRONE STUDIO">
+    <meta property="og:description" content="새로운 시선을 만드는 사람, Zeta Persei입니다.">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
     <meta name="theme-color" content="#111">
 </head>
-<body>
+<body class="greeting-page">
+<div id="loader" aria-hidden="true"><div class="loader-mark">Zeta</div></div>
+
 <header class="header">
-    <div class="logo">Zeta</div>
+    <a class="logo" href="index.html" aria-label="Zeta Persei 홈">Zeta</a>
+    <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mobileNav" aria-label="메뉴 열기">☰</button>
+    <div class="header-actions"><button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="다크 모드 전환">🌓</button></div>
     <nav>
-        <div class="menu"><button onclick="window.location.href='index.html'">홈으로</button></div>
+        <div class="menu"><button class="nav-button" type="button">회사소개</button><div class="dropdown"><a href="about.html">회사소개</a><a href="greeting.html" aria-current="page">인사말</a><a href="directions.html">오시는 길</a></div></div>
+        <div class="menu"><button class="nav-button" type="button">서비스</button><div class="dropdown"><a href="service-shooting.html">드론 촬영</a><a href="service-production.html">영상 제작</a><a href="service-education.html">교육</a></div></div>
+        <div class="menu"><button type="button" onclick="window.location.href='index.html#portfolio'">포트폴리오</button></div>
+        <div class="menu"><button type="button" onclick="window.location.href='index.html#contact'">온라인 문의</button></div>
     </nav>
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true"><nav role="navigation"><a href="about.html">회사소개</a><a href="greeting.html">인사말</a><a href="directions.html">오시는 길</a><a href="service-shooting.html">드론 촬영</a><a href="service-production.html">영상 제작</a><a href="service-education.html">교육</a><a href="index.html#portfolio">포트폴리오</a><a href="index.html#contact">온라인 문의</a></nav></div>
 </header>
-<main style="padding:120px 20px; color: white;">
-    <h1>인사말</h1>
-    <p>안녕하세요. Zeta Persei를 찾아주셔서 감사합니다.</p>
-    <p>저희는 드론 기반 콘텐츠 제작으로 고객의 비전을 현실로 만드는 것을 목표로 합니다.</p>
+
+<main>
+    <section class="greeting-hero">
+        <video class="greeting-hero-media" autoplay muted loop playsinline poster="img/오산시 서랑동 서랑저수지.png"><source src="img/hero-spring.mp4" type="video/mp4"></video>
+        <div class="greeting-hero-overlay"></div>
+        <div class="greeting-hero-content"><p class="eyebrow">ZETA PERSEI / GREETINGS</p><h1>안녕하세요.<br><span>Zeta Persei입니다.</span></h1><p>하늘에서 바라본 새로운 시선으로 공간과 순간을 기록합니다.</p></div>
+        <a class="scroll-cue" href="#letter">SCROLL TO READ <span>↓</span></a>
+    </section>
+
+    <section id="letter" class="greeting-letter greeting-shell fade">
+        <div class="greeting-photo greeting-local-visual"><span>ON LOCATION</span><strong>LOOKING<br>UP</strong><small>실제 대표 사진이 준비되면 이 영역에 연결할 수 있습니다.</small></div>
+        <article class="greeting-letter-copy"><p class="eyebrow">A LETTER FROM ZETA</p><h2>한 장면을 오래<br>바라보는 마음으로.</h2><div class="letter-body"><p>안녕하세요.</p><p><strong>Zeta Persei DRONE STUDIO</strong>를 찾아주셔서 감사합니다.</p><p>저는 드론이라는 장비를 통해 우리가 평소에는 쉽게 볼 수 없었던 새로운 시선을 발견하고, 그 순간을 영상으로 기록하는 일을 하고 있습니다.</p><p>처음에는 단순히 하늘에서 바라보는 풍경이 좋아서 시작한 촬영이었지만, 다양한 장소와 현장을 경험하면서 드론 영상이 단순한 항공 촬영을 넘어 하나의 이야기를 전달할 수 있다는 것을 알게 되었습니다.</p><p>같은 장소라도 어떤 높이에서 바라보는지, 카메라가 어떻게 움직이는지, 빛이 어디에서 들어오는지에 따라 전혀 다른 장면이 만들어집니다.</p><p>저는 그 차이를 고민하고, 한 장면 한 장면을 더 좋은 영상으로 만들어가는 과정을 중요하게 생각합니다.</p><p>Zeta Persei는 자연의 아름다운 풍경부터 스포츠 현장의 역동적인 순간, 그리고 브랜드와 공간을 소개하는 영상까지 다양한 이야기를 새로운 시선으로 담아내고자 합니다.</p></div></article>
+    </section>
+
+    <section class="greeting-quote fade"><p class="eyebrow">THE QUESTION BEHIND EVERY SHOT</p><blockquote>“이 장면을 어떻게 보여주면<br>더 오래 기억될까?”</blockquote></section>
+
+    <section class="greeting-shell creator-profile fade"><div class="creator-profile-copy"><p class="eyebrow">ABOUT THE CREATOR</p><h2>THE PERSON<br>BEHIND ZETA</h2><p>드론을 활용한 항공 촬영과 영상 제작을 중심으로 자연, 스포츠, 공간의 다양한 순간을 기록하고 있습니다.</p><div class="creator-meta"><strong>ZETA</strong><span>FOUNDER / DRONE OPERATOR / CONTENT CREATOR</span></div></div><div class="creator-visual greeting-local-visual"><span>CREATOR / ZETA</span><strong>THE VIEW<br>BEGINS<br>ABOVE</strong><small>대표 사진을 추가하면 이 영역에 표시됩니다.</small></div></section>
+
+    <section class="greeting-story greeting-shell fade"><div><p class="eyebrow">WHY I STARTED</p><h2>처음에는,<br>하늘을 바라보는 것에서<br>시작했습니다.</h2></div><div class="story-copy"><p>드론을 통해 평소에는 볼 수 없었던 풍경을 보고, 직접 비행하며 새로운 구도를 발견하는 일이 좋았습니다.</p><p>촬영한 영상이 하나의 이야기가 되어가는 과정을 지나며, 단순히 드론을 조종하는 것에서 끝나는 것이 아니라 영상 자체를 만들어가고 있다는 것을 배웠습니다.</p><p>그 경험들이 쌓여 Zeta Persei라는 브랜드가 되었습니다. 작지만 오래 바라보고, 진심을 담아 한 장면을 만드는 스튜디오로 남고 싶습니다.</p></div></section>
+
+    <section class="approach-section fade"><div class="greeting-shell"><p class="eyebrow">MY APPROACH</p><h2>제가 영상을<br>만드는 방법</h2><div class="approach-list"><article><span>01</span><h3>OBSERVE</h3><p>먼저 공간을 바라보고 이해합니다.</p></article><article><span>02</span><h3>CAPTURE</h3><p>그 공간에 가장 어울리는 시선을 찾습니다.</p></article><article><span>03</span><h3>CREATE</h3><p>촬영한 장면을 하나의 영상과 이야기로 완성합니다.</p></article></div></div></section>
+
+    <section class="greeting-client greeting-shell fade"><p class="eyebrow">YOUR STORY, FROM A NEW PERSPECTIVE.</p><h2>당신의 이야기를,<br>새로운 시선으로.</h2><div class="client-copy"><p>자연의 아름다움을 기록하고 싶으신가요?</p><p>스포츠 현장을 더욱 역동적으로 보여주고 싶으신가요?</p><p>소중한 공간이나 브랜드를 특별한 영상으로 소개하고 싶으신가요?</p><p>Zeta Persei는 각각의 공간과 목적에 맞는 시선을 함께 고민합니다.</p></div></section>
+
+    <section class="greeting-brand fade"><p class="eyebrow">ZETA PERSEI DRONE STUDIO</p><h2>평범한 순간을,<br>조금 더 오래 기억되도록.</h2></section>
+
+    <section class="greeting-final greeting-shell fade"><p class="eyebrow">A FINAL MESSAGE</p><h2>Zeta Persei의 영상을<br>찾아주셔서 감사합니다.</h2><p>앞으로도 하늘에서 바라본 새로운 시선을 통해,<br>오래 기억되는 장면을 만들어가겠습니다.</p><strong>감사합니다.<br><span>ZETA PERSEI</span></strong></section>
+
+    <section class="greeting-cta"><div class="greeting-cta-media"></div><div class="greeting-cta-overlay"></div><div class="greeting-cta-content"><p class="eyebrow">LET'S MAKE A SCENE</p><h2>함께 새로운 장면을<br>만들어보세요.</h2><div class="cta-actions"><a class="primary-button" href="index.html#contact">촬영 문의하기</a><a class="outline-button" href="index.html#portfolio">포트폴리오 보기 <span>→</span></a></div></div></section>
 </main>
+
+<footer class="footer"><div class="footer-container"><div class="footer-brand"><h3>Zeta Persei DRONE STUDIO</h3><p>Aerial filming and cinematic production for brands, places, and events.</p></div><div class="footer-links"><h4>Quick Menu</h4><a href="about.html">About</a><a href="greeting.html">Greetings</a><a href="directions.html">Directions</a><a href="index.html#portfolio">Portfolio</a><a href="index.html#contact">Contact</a></div><div class="footer-contact"><h4>Contact</h4><p>Email. zeta794j@gmail.com</p><p>Tel. 010-1234-5678</p><p>Seoul, Korea</p></div></div><p class="copy">&copy; 2026 Zeta Persei DRONE STUDIO. All rights reserved.</p></footer>
+<button id="topBtn" type="button" onclick="scrollToTop()" aria-label="맨 위로">↑</button>
+<script src="script.js"></script>
 </body>
 </html>

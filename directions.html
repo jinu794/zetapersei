@@ -2,21 +2,88 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>오시는 길 - Zeta Persei</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>오시는 길 | Zeta Persei DRONE STUDIO</title>
+    <meta name="description" content="Zeta Persei DRONE STUDIO의 위치와 주소, 방문 방법 및 지도 정보를 안내합니다.">
+    <meta property="og:title" content="오시는 길 | Zeta Persei DRONE STUDIO">
+    <meta property="og:description" content="Zeta Persei를 찾아오시는 방법을 안내합니다.">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
     <meta name="theme-color" content="#111">
 </head>
-<body>
+<body class="directions-page">
+<div id="loader" aria-hidden="true"><div class="loader-mark">Zeta</div></div>
+
 <header class="header">
-    <div class="logo">Zeta</div>
+    <a class="logo" href="index.html" aria-label="Zeta Persei 홈">Zeta</a>
+    <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mobileNav" aria-label="메뉴 열기">☰</button>
+    <div class="header-actions"><button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="다크 모드 전환">🌓</button></div>
     <nav>
-        <div class="menu"><button onclick="window.location.href='index.html'">홈으로</button></div>
+        <div class="menu"><button class="nav-button" type="button">회사소개</button><div class="dropdown"><a href="about.html">회사소개</a><a href="greeting.html">인사말</a><a href="directions.html" aria-current="page">오시는 길</a></div></div>
+        <div class="menu"><button class="nav-button" type="button">서비스</button><div class="dropdown"><a href="service-shooting.html">드론 촬영</a><a href="service-production.html">영상 제작</a><a href="service-education.html">교육</a></div></div>
+        <div class="menu"><button type="button" onclick="window.location.href='index.html#portfolio'">포트폴리오</button></div>
+        <div class="menu"><button type="button" onclick="window.location.href='index.html#contact'">온라인 문의</button></div>
     </nav>
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true"><nav role="navigation"><a href="about.html">회사소개</a><a href="greeting.html">인사말</a><a href="directions.html">오시는 길</a><a href="service-shooting.html">드론 촬영</a><a href="service-production.html">영상 제작</a><a href="service-education.html">교육</a><a href="index.html#portfolio">포트폴리오</a><a href="index.html#contact">온라인 문의</a></nav></div>
 </header>
-<main style="padding:120px 20px; color: white;">
-    <h1>오시는 길</h1>
-    <p>서울특별시 예시구 예시로 123, Zeta Persei 빌딩</p>
-    <p>지하철과 버스로 쉽게 찾아오실 수 있으며, 자세한 경로는 전화로 문의해주세요.</p>
+
+<main>
+    <section class="directions-hero">
+        <div class="directions-hero-media"></div><div class="directions-hero-overlay"></div>
+        <div class="directions-hero-content"><p class="eyebrow">ZETA PERSEI / LOCATION</p><h1>오시는 길<br><span>FIND US</span></h1><p>Zeta Persei를 찾아오시는 방법을 안내합니다.</p></div>
+        <a class="scroll-cue" href="#location">SCROLL TO FIND US <span>↓</span></a>
+    </section>
+
+    <section id="location" class="location-intro directions-shell fade">
+        <div class="map-panel" role="img" aria-label="실제 회사 주소가 확정되면 지도를 표시할 영역">
+            <div class="map-panel-grid"></div><div class="map-panel-pin">Z</div><div class="map-panel-label"><strong>ZETA PERSEI</strong><span>MAP LOCATION PENDING</span></div>
+            <!-- 실제 주소 확정 후 지도 API 또는 공식 지도 Embed를 이 영역에 연결합니다. -->
+            <p class="map-notice">지도 API 설정 필요<br><small>정확한 주소가 등록되면 지도와 위치 마커를 표시합니다.</small></p>
+        </div>
+        <article class="address-card"><p class="eyebrow">LOCATION</p><h2>찾아오시는 곳</h2><div class="address-row"><span>주소</span><strong id="locationAddress">[회사 주소 입력 필요]</strong><button id="copyAddress" type="button" aria-label="주소 복사">주소 복사</button></div><dl><div><dt>전화</dt><dd><a href="tel:010-1234-5678">010-1234-5678</a></dd></div><div><dt>이메일</dt><dd><a href="mailto:zeta794j@gmail.com">zeta794j@gmail.com</a></dd></div><div><dt>운영시간</dt><dd>[운영시간 입력 필요]</dd></div></dl><p class="data-note">현재 프로젝트에서 확인된 실제 주소가 없어 위치 정보는 임시 안내로 표시됩니다.</p></article>
+    </section>
+
+    <section class="map-actions directions-shell fade"><p class="eyebrow">MAP SERVICES</p><h2>지도 앱에서 확인하기</h2><p class="section-description">주소가 확정되면 아래 공식 지도 서비스 검색 링크를 활성화할 수 있습니다.</p><div class="map-action-list"><button type="button" disabled aria-disabled="true">네이버지도에서 보기</button><button type="button" disabled aria-disabled="true">카카오맵에서 보기</button><button type="button" disabled aria-disabled="true">Google Maps에서 보기</button></div></section>
+
+    <section class="directions-section directions-shell fade"><p class="eyebrow">HOW TO GET HERE</p><h2>방문 방법</h2><div class="directions-grid"><article><span>01 / CAR</span><h3>자동차 이용</h3><p>내비게이션에 정확한 회사 주소를 입력해 방문해주세요.</p><small>주차 정보가 확정되지 않았습니다. 방문 전 주차 가능 여부를 확인해주세요.</small></article><article><span>02 / PUBLIC TRANSPORT</span><h3>대중교통 이용</h3><p>대중교통 이용 정보는 준비 중입니다.</p><small>방문 전 문의를 남겨주시면 확인 가능한 이동 방법을 안내드리겠습니다.</small></article><article><span>03 / WALK</span><h3>도보 이용</h3><p>정확한 주소와 주변 랜드마크 확인 후 도보 안내를 제공할 예정입니다.</p><small>확인되지 않은 거리와 경로는 임의로 안내하지 않습니다.</small></article></div></section>
+
+    <section class="visit-info directions-shell fade"><div><p class="eyebrow">VISIT INFORMATION</p><h2>방문 전 확인해주세요.</h2></div><div><p>촬영 상담이나 방문이 필요한 경우 사전에 문의해 주시면 더욱 원활하게 안내해 드릴 수 있습니다.</p><div class="visit-actions"><a class="primary-button" href="index.html#contact">방문 전 문의</a><a class="outline-button" href="index.html#contact">촬영 상담 <span>→</span></a></div></div></section>
+
+    <section class="directions-cta"><div class="directions-cta-media"></div><div class="directions-cta-overlay"></div><div class="directions-cta-content"><p class="eyebrow">START FROM HERE</p><h2>LET'S CREATE SOMETHING<br>FROM A NEW PERSPECTIVE.</h2><p>새로운 시선으로 이야기를 만들어보세요.</p><div class="cta-actions"><a class="primary-button" href="index.html#contact">촬영 문의하기</a><a class="outline-button" href="index.html#portfolio">포트폴리오 보기 <span>→</span></a></div></div></section>
 </main>
+
+<div id="copyToast" class="copy-toast" role="status" aria-live="polite"></div>
+<footer class="footer"><div class="footer-container"><div class="footer-brand"><h3>Zeta Persei DRONE STUDIO</h3><p>Aerial filming and cinematic production for brands, places, and events.</p></div><div class="footer-links"><h4>Quick Menu</h4><a href="about.html">About</a><a href="greeting.html">Greetings</a><a href="directions.html">Directions</a><a href="index.html#portfolio">Portfolio</a><a href="index.html#contact">Contact</a></div><div class="footer-contact"><h4>Contact</h4><p>Email. zeta794j@gmail.com</p><p>Tel. 010-1234-5678</p><p>Seoul, Korea</p></div></div><p class="copy">&copy; 2026 Zeta Persei DRONE STUDIO. All rights reserved.</p></footer>
+<button id="topBtn" type="button" onclick="scrollToTop()" aria-label="맨 위로">↑</button>
+<script src="script.js"></script>
+<script>
+const copyAddressButton = document.getElementById('copyAddress');
+const locationAddress = document.getElementById('locationAddress');
+const copyToast = document.getElementById('copyToast');
+
+copyAddressButton?.addEventListener('click', async () => {
+    const address = locationAddress?.textContent.trim() || '';
+    try {
+        if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(address);
+        } else {
+            const helper = document.createElement('textarea');
+            helper.value = address;
+            helper.setAttribute('readonly', '');
+            helper.style.position = 'fixed';
+            helper.style.opacity = '0';
+            document.body.appendChild(helper);
+            helper.select();
+            if (!document.execCommand('copy')) throw new Error('Copy command failed');
+            helper.remove();
+        }
+        copyToast.textContent = '주소가 복사되었습니다.';
+    } catch (error) {
+        copyToast.textContent = '주소를 복사할 수 없습니다.';
+    }
+    copyToast.classList.add('show');
+    window.setTimeout(() => copyToast.classList.remove('show'), 2200);
+});
+</script>
 </body>
 </html>
