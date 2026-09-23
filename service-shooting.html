@@ -1,93 +1,83 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <title>드론 촬영 - Zeta Persei</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>드론촬영 | Zeta Persei DRONE STUDIO</title>
+    <meta name="description" content="Zeta Persei DRONE STUDIO의 드론 항공 촬영, 시네마틱 촬영, FPV 촬영 및 공간·자연·스포츠 영상 제작 서비스를 소개합니다.">
+    <meta property="og:title" content="드론촬영 | Zeta Persei DRONE STUDIO">
+    <meta property="og:description" content="공간과 순간을 가장 인상적인 시선으로 기록합니다.">
+    <meta property="og:image" content="img/한탄강.png">
+    <meta name="theme-color" content="#080808">
     <link rel="stylesheet" href="style.css">
-    <meta name="theme-color" content="#111">
+    <link rel="stylesheet" href="drone-filming.css">
 </head>
-<body>
-<header class="header">
-    <div class="logo">Zeta</div>
-    <nav>
-        <div class="menu"><button onclick="window.location.href='index.html'">홈으로</button></div>
+<body class="drone-page">
+<header class="header drone-header">
+    <a class="logo" href="index.html" aria-label="Zeta Persei home">Zeta</a>
+    <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mobileNav" aria-label="메뉴 열기">☰</button>
+    <div class="header-actions"><button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="테마 전환">◐</button></div>
+    <nav class="desktop-nav" aria-label="주 메뉴">
+        <div class="menu"><a class="nav-button" href="about.html">회사소개</a><div class="dropdown"><a href="about.html">회사소개</a><a href="greeting.html">인사말</a><a href="directions.html">오시는 길</a></div></div>
+        <div class="menu"><button class="nav-button active" type="button">서비스</button><div class="dropdown"><a class="current" href="service-shooting.html">드론 촬영</a><a href="service-production.html">영상 제작</a><a href="service-education.html">교육</a></div></div>
+        <div class="menu"><a class="nav-button" href="index.html#portfolio">포트폴리오</a></div>
+        <div class="menu"><a class="nav-button" href="index.html#contact">온라인 문의</a></div>
     </nav>
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true"><nav aria-label="모바일 메뉴"><a href="index.html">홈</a><a href="about.html">회사소개</a><a href="service-shooting.html">드론 촬영</a><a href="service-production.html">영상 제작</a><a href="index.html#portfolio">포트폴리오</a><a href="index.html#contact">온라인 문의</a></nav></div>
 </header>
-<main style="padding:120px 20px;">
-    <div style="max-width:800px; margin:0 auto;">
-        <h1>드론 촬영 서비스</h1>
-        
-        <section style="margin-top:40px; text-align:left;">
-            <h2>시네마틱 항공 촬영 (Mini 3 Pro)</h2>
-            <p style="line-height:1.8; color:#c6c6c6; margin:12px 0;">
-                경량 센서 드론으로 낮과 밤 모두 부드럽고 세련된 항공 영상을 완성합니다.
-            </p>
-            
-            <h3 style="margin-top:20px; color:#ffffff;">촬영 특징</h3>
-            <ul style="color:#c6c6c6; line-height:1.8;">
-                <li>4K/30fps 고화질 촬영</li>
-                <li>3축 짐벌 스태빌라이저로 부드러운 이동 영상</li>
-                <li>낮 촬영: 건물, 부동산, 자연경관 촬영에 최적</li>
-                <li>야간 촬영: 야경, 조명이 아름다운 야외 이벤트</li>
-                <li>1시간 이상 비행 시간 확보</li>
-            </ul>
 
-            <h3 style="margin-top:20px; color:#ffffff;">촬영 과정</h3>
-            <ol style="color:#c6c6c6; line-height:1.8;">
-                <li><strong>사전 미팅:</strong> 클라이언트와 촬영 목표, 장소, 스타일 협의</li>
-                <li><strong>현장 답사:</strong> 촬영 전 드론 이착륙 장소, 최적 각도 사전 확인</li>
-                <li><strong>촬영:</strong> 드론 비행, 다양한 앵글과 높이에서의 영상 확보</li>
-                <li><strong>편집:</strong> 촬영된 영상을 전문가 수준으로 편집 및 컬러 그레이딩</li>
-                <li><strong>최종 검수:</strong> 클라이언트 피드백 반영 및 최종 납품</li>
-            </ol>
-
-            <h3 style="margin-top:20px; color:#ffffff;">추천 용도</h3>
-            <ul style="color:#c6c6c6; line-height:1.8;">
-                <li>부동산 마케팅 및 건축 프로젝트</li>
-                <li>웨딩 영상 및 특별한 행사</li>
-                <li>관광지 프로모션 및 여행 콘텐츠</li>
-                <li>기업 소개 영상 및 광고</li>
-            </ul>
-        </section>
-
-        <section style="margin-top:40px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.1); text-align:left;">
-            <h2>익스트림 FPV 촬영 (Avata 2)</h2>
-            <p style="line-height:1.8; color:#c6c6c6; margin:12px 0;">
-                실내와 도시를 가로지르는 다이나믹한 FPV 기동으로 현장감을 극대화합니다.
-            </p>
-            
-            <h3 style="margin-top:20px; color:#ffffff;">촬영 특징</h3>
-            <ul style="color:#c6c6c6; line-height:1.8;">
-                <li>1080p/120fps 고속 촬영으로 극적인 영상 표현</li>
-                <li>시속 140km까지 가능한 고속 비행</li>
-                <li>실내 협소 공간 비행으로 독특한 시점</li>
-                <li>건물 주변 저공 비행으로 몰입감 있는 영상</li>
-                <li>360도 회전 기동으로 역동적 구성</li>
-            </ul>
-
-            <h3 style="margin-top:20px; color:#ffffff;">촬영 과정</h3>
-            <ol style="color:#c6c6c6; line-height:1.8;">
-                <li><strong>안전 검토:</strong> 촬영 장소 안전성 철저 검토 및 사전 허가 확인</li>
-                <li><strong>드론 설정:</strong> FPV 고글 및 기체 시스템 체크 및 보정</li>
-                <li><strong>비행 전 브리핑:</strong> 촬영팀과 루트 및 안전 절차 확인</li>
-                <li><strong>FPV 비행:</strong> 조종사가 1인칭 시점으로 다이나믹한 움직임 촬영</li>
-                <li><strong>고급 편집:</strong> 고속 영상 안정화, 컬러 그레이딩, VFX 추가</li>
-            </ol>
-
-            <h3 style="margin-top:20px; color:#ffffff;">추천 용도</h3>
-            <ul style="color:#c6c6c6; line-height:1.8;">
-                <li>액션 영화 및 드라마 촬영</li>
-                <li>스포츠 이벤트 중계</li>
-                <li>음악 뮤직비디오 촬영</li>
-                <li>광고 및 티저 영상</li>
-                <li>게임/메타버스 스타일 시뮬레이션 영상</li>
-            </ul>
-        </section>
-
-        <div style="text-align:center; margin-top:50px; margin-bottom:40px;">
-            <a href="index.html#estimate" style="display:inline-block; padding:12px 24px; background:white; color:black; text-decoration:none; border-radius:30px; font-weight:bold; cursor:pointer; transition:all 0.3s;">문의하러 가기</a>
+<main>
+    <section class="drone-hero">
+        <video class="hero-media" autoplay muted loop playsinline poster="img/한탄강.png" aria-label="하늘에서 바라본 풍경 영상"><source src="img/hero-spring.mp4" type="video/mp4"></video>
+        <div class="hero-shade"></div>
+        <div class="hero-content reveal">
+            <p class="eyebrow">ZETA PERSEI / AERIAL FILMING</p>
+            <h1><span>DRONE</span> FILMING</h1>
+            <p class="hero-korean">하늘에서 바라보는<br>새로운 시선.</p>
+            <p class="hero-copy">공간과 순간을 가장 인상적인 시선으로 기록합니다.</p>
+            <div class="hero-actions"><a class="button button-light" href="index.html#contact">촬영 문의하기 <span>↗</span></a><a class="button button-ghost" href="#recent-work">포트폴리오 보기 <span>↓</span></a></div>
         </div>
-    </div>
+        <div class="hero-scroll">SCROLL TO EXPLORE <span></span></div>
+        <div class="hero-meta"><span>AERIAL</span><span>CINEMATIC</span><span>FPV</span><span>PRODUCTION</span></div>
+    </section>
+
+    <section class="intro section-dark reveal"><div class="section-label">01 / POINT OF VIEW</div><div class="intro-grid"><h2>THE SKY IS NOT<br><em>THE LIMIT.</em></h2><div class="intro-copy"><p class="lead">하늘은 단순한 촬영 공간이 아닙니다.</p><p>드론을 활용하면 지상에서는 볼 수 없었던 공간의 구조와 움직임을 새로운 시선으로 표현할 수 있습니다.</p><p>Zeta Persei는 촬영 목적과 공간의 특성을 분석하여 가장 적합한 항공 촬영 방식을 구성합니다.</p></div></div></section>
+
+    <section class="shooting-fields section-light"><div class="section-wrap"><div class="section-heading reveal"><div><p class="eyebrow dark-text">02 / SERVICES</p><h2>WHAT WE SHOOT</h2></div><p>보여주고 싶은 장면에 맞춰<br>가장 좋은 시점을 설계합니다.</p></div><div class="field-grid">
+        <a class="field-card field-card-wide reveal" href="#recent-work"><img src="img/한탄강.png" alt="한탄강과 축구장을 담은 자연 항공 촬영"><div><small>01 / NATURE</small><h3>NATURE</h3><p>산, 바다, 강, 들판 등 자연경관을 항공 영상으로 기록합니다.</p><span class="card-arrow">↗</span></div></a>
+        <a class="field-card reveal" href="#recent-work"><img src="img/오산천.png" alt="오산천 행사 현장 항공 촬영"><div><small>02 / EVENT</small><h3>EVENT</h3><p>현장의 규모와 분위기를 한 장면에 담습니다.</p><span class="card-arrow">↗</span></div></a>
+        <a class="field-card reveal" href="#recent-work"><img src="img/instagram-reel.jpg.png" alt="드론으로 촬영한 스포츠 경기장"><div><small>03 / SPORTS</small><h3>SPORTS</h3><p>움직임이 많은 현장을 역동적으로 기록합니다.</p><span class="card-arrow">↗</span></div></a>
+        <a class="field-card reveal" href="#recent-work"><img src="img/오산시 서랑동 서랑저수지.png" alt="저수지와 주변 공간의 항공 촬영"><div><small>04 / SPACE</small><h3>SPACE</h3><p>건축물, 시설, 관광지의 규모와 특징을 보여줍니다.</p><span class="card-arrow">↗</span></div></a>
+        <a class="field-card field-card-wide reveal" href="#recent-work"><img src="img/대부광산 퇴적암층.png" alt="대부광산 퇴적암층 항공 촬영"><div><small>05 / PROMOTION</small><h3>PROMOTION</h3><p>기업, 브랜드, 매장, 행사의 메시지를 위한 항공 콘텐츠를 만듭니다.</p><span class="card-arrow">↗</span></div></a>
+    </div></div></section>
+
+    <section class="visual-break"><div class="visual-image"><img src="img/대부광산 퇴적암층.png" alt="암벽과 물을 내려다본 시네마틱 항공 장면"></div><div class="visual-copy"><p>ONE SPACE.</p><p>INFINITE<br><em>PERSPECTIVES.</em></p></div></section>
+
+    <section class="styles section-dark"><div class="section-wrap"><div class="section-heading reveal"><div><p class="eyebrow">03 / THE APPROACH</p><h2>OUR SHOOTING STYLE</h2></div><p>기체의 선택부터 카메라의 이동까지,<br>결과물의 감정에 맞춰 결정합니다.</p></div><div class="style-list">
+        <article class="style-row reveal"><div class="style-number">01</div><div class="style-image"><img src="img/한탄강.png" alt="넓은 시야의 시네마틱 항공 촬영"></div><div class="style-info"><p class="eyebrow">CINEMATIC AERIAL</p><h3>넓게, 오래<br>기억되는 장면</h3><p>안정적인 움직임과 넓은 시야를 활용한 시네마틱 항공 촬영. 자연, 관광지, 건축, 공간, 홍보 영상에 적합합니다.</p></div></article>
+        <article class="style-row style-row-reverse reveal"><div class="style-number">02</div><div class="style-image"><img src="img/오산시 서랑동 서랑저수지.png" alt="공간을 드러내는 리빌 촬영"></div><div class="style-info"><p class="eyebrow">REVEAL</p><h3>공간의 규모를<br>드러내는 움직임</h3><p>건물이나 지형 뒤에서 피사체가 나타나는 듯한 연출로 공간의 구조를 자연스럽게 보여줍니다.</p></div></article>
+        <article class="style-row reveal"><div class="style-number">03</div><div class="style-image"><img src="img/오산천.png" alt="빠르고 역동적인 FPV 촬영"></div><div class="style-info"><p class="eyebrow">FPV</p><h3>더 가까이,<br>더 빠르게</h3><p>빠르고 역동적인 움직임으로 몰입감 있는 장면을 만듭니다. 스포츠, 자동차, 시설, 액션, 공간 소개에 활용합니다.</p></div></article>
+    </div></div></section>
+
+    <section class="equipment section-light"><div class="section-wrap"><div class="section-heading reveal"><div><p class="eyebrow dark-text">04 / TOOLS FOR THE STORY</p><h2>THE RIGHT<br>POINT OF VIEW</h2></div><p>장비가 만드는 차이를<br>결과물로 설명합니다.</p></div><div class="equipment-grid"><article class="equipment-card reveal"><div class="equipment-photo"><img src="img/dji-mavic-3-pro.jpg" alt="DJI Mavic 3 Pro 드론과 조종기"></div><div class="equipment-copy"><p class="eyebrow dark-text">01 / DJI MAVIC 3 PRO</p><h3>Stable / Cinematic / Detailed</h3><p>안정적인 항공 촬영과 넓은 공간 표현에 적합합니다. 섬세한 디테일을 살려 자연스럽고 설득력 있는 화면을 만듭니다.</p></div></article><article class="equipment-card reveal"><div class="equipment-photo"><img src="img/dji-avata-2.jpg" alt="DJI Avata 2 FPV 드론과 고글"></div><div class="equipment-copy"><p class="eyebrow dark-text">02 / DJI AVATA 2</p><h3>Dynamic / Immersive / FPV</h3><p>빠른 움직임과 몰입감 있는 영상 표현에 적합합니다. 피사체 가까이에서 현장의 에너지를 전달합니다.</p></div></article></div></div></section>
+
+    <section class="process section-dark"><div class="section-wrap"><div class="section-heading reveal"><div><p class="eyebrow">05 / THE PROCESS</p><h2>HOW WE WORK</h2></div><p>아이디어를 비행 계획으로,<br>비행을 콘텐츠로 바꿉니다.</p></div><div class="process-line"><article class="process-step reveal"><span>01</span><h3>CONSULT</h3><p>촬영 목적과 장소, 원하는 영상 스타일을 상담합니다.</p></article><article class="process-step reveal"><span>02</span><h3>PLAN</h3><p>촬영 환경과 공간을 확인하고 필요한 방식을 계획합니다.</p></article><article class="process-step reveal"><span>03</span><h3>FILM</h3><p>프로젝트에 맞는 드론과 촬영 방식으로 영상을 촬영합니다.</p></article><article class="process-step reveal"><span>04</span><h3>DELIVER</h3><p>촬영 결과물을 정리하여 최종 콘텐츠로 전달합니다.</p></article></div></div></section>
+
+    <section class="before-flight section-light"><div class="section-wrap before-grid"><div class="reveal"><p class="eyebrow dark-text">06 / BEFORE THE FLIGHT</p><h2>좋은 장면은<br>이륙 전에<br><em>시작됩니다.</em></h2></div><div class="check-list reveal"><p>촬영 장소와 비행 조건에 따라 필요한 절차 및 제한 사항을 사전에 확인합니다.</p><div class="check-items"><span>촬영 장소</span><span>촬영 목적</span><span>원하는 장면</span><span>촬영 일정</span><span>비행 가능 여부</span><span>촬영 환경</span><span>필요 절차</span></div></div></div></section>
+
+    <section id="recent-work" class="recent-work section-dark"><div class="section-wrap"><div class="section-heading reveal"><div><p class="eyebrow">07 / SELECTED WORK</p><h2>FROM THE SKY</h2></div><a class="text-link" href="index.html#portfolio">전체 포트폴리오 보기 ↗</a></div><div class="work-grid"><a class="work-item work-large reveal" href="index.html#portfolio"><img src="img/한탄강.png" alt="한탄강 자연 및 스포츠 항공 영상"><div><small>NATURE / SPORTS</small><h3>한탄강, 하나의 풍경 안에 담긴 움직임</h3></div></a><a class="work-item reveal" href="index.html#portfolio"><img src="img/대부광산 퇴적암층.png" alt="대부광산 퇴적암층 홍보 항공 영상"><div><small>PROMOTION</small><h3>대부광산 퇴적암층</h3></div></a><a class="work-item reveal" href="index.html#portfolio"><img src="img/오산천.png" alt="오산천 행사 항공 영상"><div><small>EVENT</small><h3>오산천의 하루</h3></div></a></div></div></section>
+
+    <section class="quote-section"><div class="quote-inner reveal"><p>DON'T JUST SHOW<br>THE SPACE.</p><p><em>SHOW HOW IT FEELS.</em></p><span>공간을 보여주는 것에서 끝나지 않습니다.<br>그 공간의 느낌까지 전달합니다.</span></div></section>
+
+    <section class="values section-light"><div class="section-wrap"><div class="section-heading reveal"><div><p class="eyebrow dark-text">08 / WHY AERIAL</p><h2>MORE THAN<br>A VIEW</h2></div></div><div class="value-grid"><article class="value reveal"><span>01</span><h3>PERSPECTIVE</h3><p>지상에서는 볼 수 없는 새로운 시선으로 공간을 다시 발견합니다.</p></article><article class="value reveal"><span>02</span><h3>MOVEMENT</h3><p>공간의 크기와 움직임을 효과적으로 표현해 장면에 리듬을 만듭니다.</p></article><article class="value reveal"><span>03</span><h3>STORY</h3><p>단순한 항공 촬영을 넘어 콘텐츠에 맞는 장면을 구성합니다.</p></article></div></div></section>
+
+    <section class="faq section-dark"><div class="section-wrap faq-grid"><div class="reveal"><p class="eyebrow">09 / QUESTIONS</p><h2>FAQ</h2><p>프로젝트를 시작하기 전에<br>가장 많이 묻는 질문입니다.</p></div><div class="faq-list reveal"><details open><summary>드론 촬영은 어떤 장소에서 가능한가요?<span>+</span></summary><p>촬영 장소와 비행 조건 등에 따라 가능 여부와 필요한 절차가 달라질 수 있습니다. 촬영 전 장소와 조건을 확인합니다.</p></details><details><summary>촬영 전에 준비해야 할 것이 있나요?<span>+</span></summary><p>촬영 목적, 장소, 일정, 원하는 장면 등을 알려주시면 프로젝트에 맞는 촬영 방향을 상담할 수 있습니다.</p></details><details><summary>FPV 촬영도 가능한가요?<span>+</span></summary><p>일반적인 항공 촬영과 FPV 촬영을 활용하여 프로젝트에 맞는 다양한 시점을 구성합니다.</p></details><details><summary>촬영 비용은 어떻게 결정되나요?<span>+</span></summary><p>촬영 장소, 일정, 촬영 시간, 촬영 방식, 결과물 범위 등에 따라 달라질 수 있습니다. 정확한 견적은 상담 후 안내합니다.</p></details></div></div></section>
+
+    <section class="price section-light"><div class="section-wrap price-box reveal"><div><p class="eyebrow dark-text">10 / PROJECT BASED</p><h2>EVERY PROJECT<br>HAS ITS OWN SCALE.</h2></div><div><p>프로젝트의 촬영 환경과 제작 범위에 따라 상담 후 견적을 안내합니다.</p><a class="button button-dark" href="index.html#contact">프로젝트 상담하기 <span>↗</span></a></div></div></section>
+    <section class="final-cta"><img src="img/오산천.png" alt="오산천 항공 촬영 장면"><div class="hero-shade"></div><div class="final-content reveal"><p class="eyebrow">LET'S MAKE THE FIRST FRAME</p><h2>READY TO SEE YOUR<br>SPACE DIFFERENTLY?</h2><p>당신의 공간을 새로운 시선으로 보여주세요.</p><span>촬영 목적과 장소를 알려주시면 프로젝트에 맞는 촬영 방향을 함께 고민하겠습니다.</span><div class="hero-actions"><a class="button button-light" href="index.html#contact">촬영 문의하기 <span>↗</span></a><a class="button button-ghost" href="index.html#portfolio">포트폴리오 보기 <span>↗</span></a></div></div></section>
 </main>
+
+<footer class="footer drone-footer"><div class="footer-container"><div class="footer-brand"><h3>Zeta Persei DRONE STUDIO</h3><p>Aerial filming and cinematic production for brands, places, and events.</p></div><div class="footer-links"><h4>Quick Menu</h4><a href="about.html">About</a><a href="greeting.html">Greetings</a><a href="directions.html">Directions</a><a href="index.html#portfolio">Portfolio</a><a href="index.html#contact">Contact</a></div><div class="footer-contact"><h4>Contact</h4><p>Email. zeta794j@gmail.com</p><p>Tel. 010-1234-5678</p><p>Seoul, Korea</p></div></div><p class="copy">&copy; 2026 Zeta Persei DRONE STUDIO. All rights reserved.</p></footer>
+<script src="drone-filming.js"></script>
 </body>
 </html>

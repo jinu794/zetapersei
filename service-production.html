@@ -1,105 +1,54 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <title>영상 제작 - Zeta Persei</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영상제작 | Zeta Persei DRONE STUDIO</title>
+    <meta name="description" content="Zeta Persei DRONE STUDIO의 영상 편집, 색보정, 그래픽 및 후반 제작 과정을 소개합니다.">
+    <meta property="og:title" content="영상제작 | Zeta Persei DRONE STUDIO">
+    <meta property="og:description" content="촬영한 순간을 하나의 영상으로 완성합니다.">
+    <meta property="og:image" content="img/한탄강.png">
     <link rel="stylesheet" href="style.css">
-    <meta name="theme-color" content="#111">
+    <link rel="stylesheet" href="production-tools.css">
+    <link rel="stylesheet" href="production-page.css">
+    <meta name="theme-color" content="#080808">
 </head>
-<body>
-<header class="header">
-    <div class="logo">Zeta</div>
-    <nav>
-        <div class="menu"><button onclick="window.location.href='index.html'">홈으로</button></div>
+<body class="production-page">
+<header class="header production-header">
+    <a class="logo" href="index.html" aria-label="Zeta Persei home">Zeta</a>
+    <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mobileNav" aria-label="메뉴 열기">☰</button>
+    <div class="header-actions"><button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="테마 전환">◐</button></div>
+    <nav class="production-desktop-nav" aria-label="주 메뉴">
+        <div class="menu"><a class="nav-button" href="about.html">회사소개</a><div class="dropdown"><a href="about.html">회사소개</a><a href="greeting.html">인사말</a><a href="directions.html">오시는 길</a></div></div>
+        <div class="menu"><button class="nav-button active" type="button">서비스</button><div class="dropdown"><a href="service-shooting.html">드론 촬영</a><a class="current" href="service-production.html">영상 제작</a><a href="service-education.html">교육</a></div></div>
+        <div class="menu"><a class="nav-button" href="index.html#portfolio">포트폴리오</a></div>
+        <div class="menu"><a class="nav-button" href="index.html#contact">온라인 문의</a></div>
     </nav>
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true"><nav aria-label="모바일 메뉴"><a href="index.html">홈</a><a href="about.html">회사소개</a><a href="service-shooting.html">드론 촬영</a><a href="service-production.html">영상 제작</a><a href="index.html#portfolio">포트폴리오</a><a href="index.html#contact">온라인 문의</a></nav></div>
 </header>
-<main style="padding:120px 20px;">
-    <div style="max-width:800px; margin:0 auto;">
-        <h1>영상 제작 서비스</h1>
-        
-        <section style="margin-top:40px; text-align:left;">
-            <h2>전체 제작 프로세스</h2>
-            <p style="line-height:1.8; color:#c6c6c6; margin:12px 0;">
-                촬영부터 편집, 더빙, 음악 선정까지 전문가 수준의 완성된 영상 제작을 제공합니다.
-            </p>
-            
-            <h3 style="margin-top:20px; color:#ffffff;">제작 특징</h3>
-            <ul style="color:#c6c6c6; line-height:1.8;">
-                <li>드론 촬영(항공/FPV) + 지상 촬영(카메라/스마트폰) 통합</li>
-                <li>4K UHD 높은 해상도로 미래 대비</li>
-                <li>전문 편집팀의 시네마틱 컬러 그레이딩</li>
-                <li>영상 길이에 맞춘 음악 선정 및 신디사이저</li>
-                <li>다양한 포맷 납품 (유튜브, 인스타그램, TV 광고 등)</li>
-            </ul>
-
-            <h3 style="margin-top:20px; color:#ffffff;">제작 단계별 설명</h3>
-            
-            <div style="margin-top:20px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">1단계: 기획 및 콘셉트</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    클라이언트의 목표와 타겟 오디언스를 분석하여 영상의 톤, 스타일, 길이를 결정합니다.
-                </p>
-            </div>
-
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">2단계: 촬영 및 수집</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    드론 촬영, 현장 카메라 촬영, 인터뷰 촬영 등 필요한 모든 영상 자료 수집합니다.
-                </p>
-            </div>
-
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">3단계: 편집 및 구성</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    촬영 자료를 스토리 순서에 맞게 배열하고, 자막, 텍스트, 그래픽을 추가합니다.
-                </p>
-            </div>
-
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">4단계: 컬러 그레이딩</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    영상의 색감을 통일하고, 시네마틱한 룩을 더해 프리미엄 퀄리티를 구현합니다.
-                </p>
-            </div>
-
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">5단계: 사운드 디자인 및 음악</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    배경음악, 효과음, 자막 나레이션을 추가하여 감정 몰입감을 높입니다.
-                </p>
-            </div>
-
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">6단계: 최종 검수 및 납품</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    클라이언트 피드백 수용 후 최종 수정, 다양한 포맷으로 최종 납품합니다.
-                </p>
-            </div>
-
-            <h3 style="margin-top:30px; color:#ffffff;">추천 용도</h3>
-            <ul style="color:#c6c6c6; line-height:1.8;">
-                <li>기업 홍보 영상 및 제품 설명</li>
-                <li>부동산 및 건설 프로젝트 마케팅</li>
-                <li>웨딩 및 특별 행사 기록</li>
-                <li>유튜브 채널 영상</li>
-                <li>SNS 마케팅 영상 (틱톡, 인스타그램 릴스)</li>
-                <li>TV 및 온라인 광고</li>
-                <li>교육 및 튜토리얼 영상</li>
-            </ul>
-
-            <h3 style="margin-top:20px; color:#ffffff;">납품 포맷</h3>
-            <ul style="color:#c6c6c6; line-height:1.8;">
-                <li>Full HD (1920x1080)</li>
-                <li>4K UHD (3840x2160)</li>
-                <li>유튜브 최적화 (16:9)</li>
-                <li>인스타그램 릴스 (9:16)</li>
-                <li>틱톡 (9:16)</li>
-                <li>TV 방송 (다양한 규격)</li>
-            </ul>
-        </section>
-        <div style="text-align:center; margin-top:50px; margin-bottom:40px;">
-            <a href="index.html#estimate" style="display:inline-block; padding:12px 24px; background:white; color:black; text-decoration:none; border-radius:30px; font-weight:bold; cursor:pointer; transition:all 0.3s;">문의하러 가기</a>
-        </div>    </div>
+<main>
+    <section class="production-hero">
+        <video class="production-hero-media" autoplay muted loop playsinline poster="img/한탄강.png" aria-label="항공 촬영 원본 영상"><source src="img/hero-spring.mp4" type="video/mp4"></video><div class="production-overlay"></div>
+        <div class="production-hero-content production-reveal"><p class="production-kicker">ZETA PERSEI / POST PRODUCTION</p><h1><span>VIDEO</span> PRODUCTION</h1><p class="production-hero-ko">촬영한 순간을<br>하나의 영상으로.</p><p class="production-hero-copy">촬영부터 편집, 색보정, 그래픽까지 콘텐츠의 완성도를 만들어갑니다.</p><a class="production-button production-button-lime" href="#contact">제작 문의하기 <span>↗</span></a></div>
+        <div class="production-hero-meta"><span>EDIT</span><span>COLOR</span><span>GRAPHIC</span><span>FINAL</span></div>
+    </section>
+    <section class="production-intro production-dark production-reveal"><div class="production-wrap"><p class="production-section-label">01 / FROM FOOTAGE TO FINAL</p><div class="production-intro-grid"><h2>FROM FOOTAGE<br><em>TO FINAL.</em></h2><div><p class="production-lead">촬영은 시작일 뿐입니다.</p><p>촬영한 원본 영상에 편집과 색감, 그래픽을 더해 하나의 콘텐츠로 완성합니다.</p></div></div><div class="production-film-strip"><span>FOOTAGE</span><span>SELECT</span><span>EDIT</span><span>COLOR</span><span>GRAPHIC</span><span>FINAL</span></div></div></section>
+    <section class="production-process production-dark"><div class="production-wrap"><div class="production-heading production-reveal"><div><p class="production-section-label">02 / THE PROCESS</p><h2>ONE SHOT.<br><em>FIVE MOVES.</em></h2></div><p>하나의 장면이<br>완성된 영상이 되기까지</p></div><div class="production-timeline production-reveal"><div class="production-progress"><span></span></div><article class="production-step"><b>01</b><div><small>FOOTAGE</small><h3>촬영</h3><p>드론과 카메라로 프로젝트에 필요한 장면을 촬영합니다.</p></div></article><article class="production-step"><b>02</b><div><small>EDIT</small><h3>편집</h3><p>원본을 확인하고 필요한 장면을 선별해 영상의 흐름을 구성합니다.</p></div></article><article class="production-step"><b>03</b><div><small>COLOR</small><h3>색보정</h3><p>영상의 분위기와 목적에 맞춰 색감과 톤을 조정합니다.</p></div></article><article class="production-step"><b>04</b><div><small>GRAPHIC</small><h3>그래픽</h3><p>자막, 이미지, 타이틀 등 콘텐츠에 필요한 요소를 구성합니다.</p></div></article><article class="production-step"><b>05</b><div><small>FINAL</small><h3>최종 완성</h3><p>전체적인 흐름과 완성도를 확인해 최종 결과물로 제작합니다.</p></div></article></div></div></section>
+    <section class="production-tools-section production-light"><div class="production-wrap"><div class="production-heading production-reveal"><div><p class="production-section-label dark-label">03 / TOOLS WE USE</p><h2>THE TOOLS<br>BEHIND THE WORK</h2></div><p>프로젝트의 목적과 콘텐츠의 형태에 맞춰<br>다양한 제작 도구를 활용합니다.</p></div><div class="production-tool-grid">
+        <article class="production-tool production-tool-capcut production-reveal"><div class="production-tool-visual"><img src="img/capcut img.png" alt="CapCut 로고" loading="lazy"></div><div class="production-tool-copy"><small>01 / EDIT TO SOCIAL</small><h3>CAPCUT</h3><p>빠르고 직관적인 편집을 통해 숏폼과 SNS 콘텐츠를 제작합니다.</p><div class="production-tool-tags"><span>SHORT FORM</span><span>REELS</span><span>SHORTS</span><span>SOCIAL CONTENT</span></div><i>↗</i></div></article>
+        <article class="production-tool production-tool-davinci production-reveal"><div class="production-tool-visual"><img src="img/다빈치 리졸브 img.png" alt="DaVinci Resolve 편집 화면" loading="lazy"></div><div class="production-tool-copy"><small>02 / EDIT TO COLOR</small><h3>DAVINCI RESOLVE</h3><p>영상의 색감과 분위기를 세밀하게 조정하여 장면의 완성도를 높입니다.</p><div class="production-tool-tags"><span>COLOR</span><span>COLOR GRADING</span><span>CINEMATIC LOOK</span><span>COLOR CORRECTION</span></div><i>↗</i></div></article>
+        <article class="production-tool production-tool-premiere production-reveal"><div class="production-tool-visual"><img src="img/프리미어프로 img.png" alt="Adobe Premiere Pro 편집 타임라인" loading="lazy"></div><div class="production-tool-copy"><small>03 / EDIT TO STORY</small><h3>ADOBE PREMIERE PRO</h3><p>영상의 전체적인 흐름을 구성하고 장면과 음악, 자막을 하나의 콘텐츠로 완성합니다.</p><div class="production-tool-tags"><span>VIDEO EDITING</span><span>TIMELINE</span><span>SOUND</span><span>TITLE</span></div><i>↗</i></div></article>
+        <article class="production-tool production-tool-photoshop production-reveal"><div class="production-tool-visual"><img src="img/포토샵 img.png" alt="Adobe Photoshop 이미지 편집 화면" loading="lazy"></div><div class="production-tool-copy"><small>04 / DESIGN TO DETAIL</small><h3>ADOBE PHOTOSHOP</h3><p>영상과 콘텐츠에 필요한 이미지와 그래픽 요소를 제작합니다.</p><div class="production-tool-tags"><span>THUMBNAIL</span><span>GRAPHIC</span><span>IMAGE EDIT</span><span>CONTENT DESIGN</span></div><i>↗</i></div></article>
+    </div><div class="production-tools-bridge production-reveal"><div><p>ONE PROJECT.</p><p>DIFFERENT TOOLS.</p></div><span>프로젝트의 목적과 콘텐츠의 형태에 따라 가장 적합한 제작 도구를 선택합니다.</span></div></div></section>
+    <section class="production-visual production-dark"><div class="production-visual-image"><img src="img/대부광산 퇴적암층.png" alt="대부광산 퇴적암층의 항공 촬영 결과물" loading="lazy"></div><div class="production-visual-copy production-reveal"><p>THE TOOL IS ONLY<br>THE <em>BEGINNING.</em></p><span>도구보다 중요한 것은 결과물입니다.<br>프로젝트의 목적에 맞는 편집과 후반작업을 통해 촬영된 장면을 하나의 콘텐츠로 완성합니다.</span></div></section>
+    <section class="production-result production-light"><div class="production-wrap"><div class="production-heading production-reveal"><div><p class="production-section-label dark-label">04 / FINAL RESULT</p><h2>THE LAST<br><em>FRAME.</em></h2></div><a href="index.html#portfolio" class="production-text-link">포트폴리오 보기 ↗</a></div><div class="production-result-grid"><a class="production-result-main production-reveal" href="index.html#portfolio"><img src="img/한탄강.png" alt="한탄강 항공 촬영 최종 결과물" loading="lazy"><div><small>NATURE / SPORTS</small><h3>한 장면에 담긴<br>공간의 움직임</h3></div></a><a class="production-result-side production-reveal" href="index.html#portfolio"><img src="img/오산천.png" alt="오산천 행사 영상 최종 결과물" loading="lazy"><div><small>EVENT</small><h3>오산천의 하루</h3></div></a><a class="production-result-side production-reveal" href="index.html#portfolio"><img src="img/오산시 서랑동 서랑저수지.png" alt="저수지 홍보 영상 최종 결과물" loading="lazy"><div><small>PROMOTION</small><h3>공간을 소개하는 시선</h3></div></a></div></div></section>
+    <section id="contact" class="production-contact production-dark"><div class="production-wrap production-reveal"><p class="production-section-label">05 / START A PROJECT</p><h2>HAVE A PROJECT<br><em>IN MIND?</em></h2><p class="production-contact-ko">만들고 싶은 영상이 있으신가요?</p><p class="production-contact-copy">촬영부터 편집까지 프로젝트에 맞는 영상 제작 방향을 함께 고민합니다.</p><a class="production-button production-button-lime" href="index.html#contact">제작 문의하기 <span>↗</span></a></div></section>
 </main>
+<footer class="footer production-footer"><div class="footer-container"><div class="footer-brand"><h3>Zeta Persei DRONE STUDIO</h3><p>Aerial filming and cinematic production for brands, places, and events.</p></div><div class="footer-links"><h4>Quick Menu</h4><a href="about.html">About</a><a href="greeting.html">Greetings</a><a href="directions.html">Directions</a><a href="index.html#portfolio">Portfolio</a><a href="index.html#contact">Contact</a></div><div class="footer-contact"><h4>Contact</h4><p>Email. zeta794j@gmail.com</p><p>Tel. 010-1234-5678</p><p>Seoul, Korea</p></div></div><p class="copy">&copy; 2026 Zeta Persei DRONE STUDIO. All rights reserved.</p></footer>
+<script src="script.js"></script>
+<script src="production-page.js"></script>
+<script>
+(function () { var items = document.querySelectorAll('.production-reveal'); var observer = 'IntersectionObserver' in window ? new IntersectionObserver(function (entries, current) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); current.unobserve(entry.target); } }); }, { threshold: 0.12 }) : null; items.forEach(function (item) { if (observer) observer.observe(item); else item.classList.add('is-visible'); }); }());
+</script>
 </body>
 </html>

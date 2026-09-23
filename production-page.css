@@ -1,0 +1,4 @@
+.production-progress { background: linear-gradient(90deg, var(--prod-lime) 0 var(--timeline-progress, 18%), transparent var(--timeline-progress, 18%)); }
+@media (max-width: 880px) {
+    .production-progress { background: linear-gradient(180deg, var(--prod-lime) 0 var(--timeline-progress, 20%), transparent var(--timeline-progress, 20%)); }
+}

@@ -1,188 +1,51 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <title>드론 교육 - Zeta Persei</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>드론 교육·자격증 | Zeta Persei DRONE STUDIO</title>
+    <meta name="description" content="Zeta Persei DRONE STUDIO의 드론 조종, 자격증 취득, 드론 촬영 및 정비 교육 프로그램을 소개합니다.">
+    <meta property="og:title" content="드론 교육·자격증 | Zeta Persei DRONE STUDIO">
+    <meta property="og:description" content="비행을 배우고, 자격을 갖추고, 실무를 완성합니다.">
+    <meta property="og:image" content="img/한탄강.png">
     <link rel="stylesheet" href="style.css">
-    <meta name="theme-color" content="#111">
+    <link rel="stylesheet" href="education-page.css">
+    <meta name="theme-color" content="#080808">
 </head>
-<body>
-<header class="header">
-    <div class="logo">Zeta</div>
-    <nav>
-        <div class="menu"><button onclick="window.location.href='index.html'">홈으로</button></div>
+<body class="education-page">
+<header class="header education-header">
+    <a class="logo" href="index.html" aria-label="Zeta Persei home">Zeta</a>
+    <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mobileNav" aria-label="메뉴 열기">☰</button>
+    <div class="header-actions"><button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="테마 전환">◐</button></div>
+    <nav class="education-desktop-nav" aria-label="주 메뉴">
+        <div class="menu"><a class="nav-button" href="about.html">회사소개</a><div class="dropdown"><a href="about.html">회사소개</a><a href="greeting.html">인사말</a><a href="directions.html">오시는 길</a></div></div>
+        <div class="menu"><button class="nav-button active" type="button">서비스</button><div class="dropdown"><a href="service-shooting.html">드론 촬영</a><a href="service-production.html">영상 제작</a><a class="current" href="service-education.html">교육</a></div></div>
+        <div class="menu"><a class="nav-button" href="index.html#portfolio">포트폴리오</a></div>
+        <div class="menu"><a class="nav-button" href="index.html#contact">온라인 문의</a></div>
     </nav>
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true"><nav aria-label="모바일 메뉴"><a href="index.html">홈</a><a href="about.html">회사소개</a><a href="service-shooting.html">드론 촬영</a><a href="service-production.html">영상 제작</a><a href="service-education.html">교육</a><a href="index.html#portfolio">포트폴리오</a><a href="index.html#contact">온라인 문의</a></nav></div>
 </header>
-<main style="padding:120px 20px;">
-    <div style="max-width:800px; margin:0 auto;">
-        <h1>드론 교육 서비스</h1>
-        
-        <section style="margin-top:40px; text-align:left;">
-            <h2>기초 드론 교육</h2>
-            <p style="line-height:1.8; color:#c6c6c6; margin:12px 0;">
-                안전 규정 준수부터 고급 촬영 기법까지 단계별로 학습하는 체계적인 교육 프로그램입니다.
-            </p>
-            
-            <h3 style="margin-top:20px; color:#ffffff;">교육 특징</h3>
-            <ul style="color:#c6c6c6; line-height:1.8;">
-                <li>초보자부터 전문가까지 수준별 맞춤형 교육</li>
-                <li>이론 강의 + 실제 비행 실습의 균형</li>
-                <li>소수 인원 (최대 4명) 집중 교육</li>
-                <li>비용 효율적인 개인/그룹 교육 옵션</li>
-                <li>안전 규정 및 법규 숙지</li>
-                <li>영상 촬영 기술까지 확대</li>
-            </ul>
+<main>
+    <section class="education-hero"><video class="education-hero-media" autoplay muted loop playsinline poster="img/한탄강.png" aria-label="하늘에서 바라본 드론 촬영 영상"><source src="img/hero-spring.mp4" type="video/mp4"></video><div class="education-overlay"></div><div class="education-hero-content education-reveal"><p class="education-kicker">ZETA PERSEI / EDUCATION</p><h1><span>DRONE</span> EDUCATION</h1><p class="education-hero-ko">비행을 배우고,<br>자격을 갖추고,<br><em>실무를 완성합니다.</em></p><p class="education-hero-copy">드론 조종부터 촬영, 정비, 실무 교육까지 목적에 맞는 교육과 자격증 취득 과정을 제공합니다.</p></div><div class="education-hero-meta"><span>FLIGHT</span><span>CERTIFICATION</span><span>FILMING</span><span>PRACTICE</span></div></section>
 
-            <h3 style="margin-top:20px; color:#ffffff;">기초 과정 (1-2일)</h3>
-            
-            <div style="margin-top:20px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">모듈 1: 드론 기초 이론</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    <strong>시간:</strong> 2시간 | <strong>내용:</strong>
-                </p>
-                <ul style="color:#c6c6c6; margin-top:8px; padding-left:20px;">
-                    <li>드론의 원리 및 구조 (4축 로터, 배터리, 카메라)</li>
-                    <li>비행 안전규정 및 법적 준칙</li>
-                    <li>드론 선택 기준 및 추천 모델</li>
-                    <li>장비 점검 및 유지보수</li>
-                </ul>
-            </div>
+    <section class="education-why education-dark"><div class="education-wrap"><div class="education-heading education-reveal"><div><p class="education-label">01 / WHY ZETA PERSEI</p><h2>FLY.<br>LEARN.<br><em>CREATE.</em></h2></div><p>비행을 시작으로 촬영과 실무,<br>결과물까지 연결하는 교육입니다.</p></div><div class="education-why-grid"><article class="education-why-item education-reveal"><b>01</b><h3>FLIGHT</h3><p>기본 조종과 안전한 비행을 익힙니다.</p></article><article class="education-why-item education-reveal"><b>02</b><h3>FILMING</h3><p>항공 촬영과 카메라 운용을 배웁니다.</p></article><article class="education-why-item education-reveal"><b>03</b><h3>PRACTICE</h3><p>실제 상황을 기반으로 반복 실습합니다.</p></article><article class="education-why-item education-reveal"><b>04</b><h3>RESULT</h3><p>자격과 실무 능력으로 다음 단계에 연결합니다.</p></article></div></div></section>
 
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">모듈 2: 기초 조종법</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    <strong>시간:</strong> 3시간 | <strong>내용:</strong>
-                </p>
-                <ul style="color:#c6c6c6; margin-top:8px; padding-left:20px;">
-                    <li>조종기 기본 사용법 및 조정</li>
-                    <li>실제 비행 (이륙, 호버링, 착륙)</li>
-                    <li>기본 이동 패턴 (상하, 좌우, 전후)</li>
-                    <li>비상 상황 대처</li>
-                </ul>
-            </div>
+    <section class="education-roadmap education-light"><div class="education-wrap"><div class="education-heading education-reveal"><div><p class="education-label education-label-dark">02 / CERTIFICATION ROADMAP</p><h2>YOUR PATH TO<br><em>DRONE PROFESSIONAL</em></h2></div><p>현재의 목적과 수준에서<br>다음 비행까지 단계적으로 설계합니다.</p></div><div class="education-roadmap-line education-reveal"><div class="education-roadmap-progress"></div><article><span>START</span><b>01</b><h3>조종 교육</h3><p>기초 이론과 안전한 비행의 시작</p></article><article><span>STEP 02</span><b>02</b><h3>국가자격</h3><p>무인멀티콥터 조종자 과정 상담</p></article><article><span>STEP 03</span><b>03</b><h3>전문교육</h3><p>현장과 목적에 맞는 심화 역량</p></article><article><span>STEP 04</span><b>04</b><h3>촬영 / 정비</h3><p>기체와 카메라를 다루는 실습</p></article><article><span>PRO</span><b>05</b><h3>실무 역량</h3><p>자격과 결과물로 이어지는 다음 비행</p></article></div></div></section>
 
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">모듈 3: 항공 촬영 기초</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    <strong>시간:</strong> 2시간 | <strong>내용:</strong>
-                </p>
-                <ul style="color:#c6c6c6; margin-top:8px; padding-left:20px;">
-                    <li>짐벌 컨트롤 및 카메라 설정</li>
-                    <li>좋은 구도(프레임) 잡는 법</li>
-                    <li>항공 촬영의 기본 패턴</li>
-                    <li>촬영 자료 저장 및 관리</li>
-                </ul>
-            </div>
-        </section>
+    <section class="education-national education-dark"><div class="education-wrap"><div class="education-heading education-reveal"><div><p class="education-label">03 / NATIONAL QUALIFICATION</p><h2>무인멀티콥터<br><em>조종자 자격 교육</em></h2></div><p>국가자격 과정은 현재 수준과 목표를<br>상담한 뒤 세부 내용을 안내합니다.</p></div><div class="education-qualification-list"><article class="education-qualification education-reveal"><span>01 / NATIONAL</span><div><h3>무인멀티콥터 조종자 1종</h3><p>고도화된 조종 역량과 자격 취득을 목표로 하는 교육 과정입니다.</p></div><a href="#inquiry" aria-label="1종 상담">↗</a></article><article class="education-qualification education-reveal"><span>02 / NATIONAL</span><div><h3>무인멀티콥터 조종자 2종</h3><p>기본 조종과 비행 이해를 바탕으로 자격 과정을 준비합니다.</p></div><a href="#inquiry" aria-label="2종 상담">↗</a></article><article class="education-qualification education-reveal"><span>03 / NATIONAL</span><div><h3>무인멀티콥터 조종자 3종</h3><p>드론 비행을 처음 시작하는 학습자를 위한 상담형 과정입니다.</p></div><a href="#inquiry" aria-label="3종 상담">↗</a></article></div><p class="education-note">세부 교육시간, 응시 조건 및 시험 방식은 상담을 통해 교육 과정에 맞춰 안내합니다.</p></div></section>
 
-        <section style="margin-top:40px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.1); text-align:left;">
-            <h2>중급 드론 교육</h2>
-            <p style="line-height:1.8; color:#c6c6c6; margin:12px 0;">
-                촬영 기법 심화 및 영상 편집까지 배워 프리랜서 수준으로 성장할 수 있습니다.
-            </p>
+    <section class="education-professional education-light"><div class="education-wrap"><div class="education-heading education-reveal"><div><p class="education-label education-label-dark">04 / PROFESSIONAL QUALIFICATION</p><h2>자격을 넘어<br><em>실무로</em></h2></div><p>QUALIFICATION<br><span>↓</span> SKILL <span>↓</span> FIELD</p></div><div class="education-professional-grid"><article class="education-professional-card education-reveal"><span>01 / LEAD</span><h3>지도자 자격증</h3><p>드론 교육을 지도하기 위한 전문 역량을 준비하는 과정.</p><div>QUALIFICATION <b>→</b> TEACHING <b>→</b> FIELD</div></article><article class="education-professional-card education-reveal"><span>02 / OPERATE</span><h3>실무자 자격증</h3><p>실제 드론 운용과 현장에서 필요한 실무 역량을 준비하는 과정.</p><div>QUALIFICATION <b>→</b> OPERATING <b>→</b> FIELD</div></article></div><p class="education-note education-note-dark">자격 과정의 성격과 세부 조건은 상담을 통해 정확히 안내합니다.</p></div></section>
 
-            <h3 style="margin-top:20px; color:#ffffff;">중급 과정 (3-5일)</h3>
-            
-            <div style="margin-top:20px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">모듈 4: 고급 조종 기법</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    <strong>시간:</strong> 3시간 | <strong>내용:</strong>
-                </p>
-                <ul style="color:#c6c6c6; margin-top:8px; padding-left:20px;">
-                    <li>복잡한 이동 패턴 (원형, 나선형, 협곡 주행)</li>
-                    <li>바람 대응 및 환경 적응</li>
-                    <li>멀티 드론 운용</li>
-                    <li>고난도 착륙 시나리오</li>
-                </ul>
-            </div>
+    <section class="education-private education-dark"><div class="education-wrap"><div class="education-heading education-reveal"><div><p class="education-label">05 / PRIVATE QUALIFICATION</p><h2>촬영과 정비,<br><em>전문 분야별 실무</em></h2></div><p>민간자격 취득 프로그램<br>분야별 교육 과정</p></div><div class="education-private-grid"><article class="education-private-block education-reveal"><div class="education-private-image"><img src="img/dji-mavic-3-pro.jpg" alt="DJI Mavic 3 Pro 드론 촬영 장비" loading="lazy"><span>PRIVATE QUALIFICATION</span></div><div class="education-private-copy"><small>01 / DRONE FILMING</small><h3>드론 촬영 1급 <span>·</span> 2급</h3><p>항공 촬영, 카메라 운용, 영상 구도, 비행과 촬영의 결합을 중심으로 촬영 실무를 익힙니다.</p><div><span>FLIGHT</span><span>CAMERA</span><span>COMPOSITION</span></div></div></article><article class="education-private-block education-reveal"><div class="education-private-image"><img src="img/dji-avata-2.jpg" alt="DJI Avata 2 드론 정비 장비" loading="lazy"><span>PRIVATE QUALIFICATION</span></div><div class="education-private-copy"><small>02 / DRONE MAINTENANCE</small><h3>드론 정비 1급 <span>·</span> 2급</h3><p>드론 구조 이해, 기체 관리, 점검, 유지보수 등 정비 실무를 학습합니다.</p><div><span>STRUCTURE</span><span>CHECK</span><span>MAINTENANCE</span></div></div></article></div><p class="education-note">민간자격 과정입니다. 등록번호, 발급기관 등 세부 정보는 상담 시 확인해 안내합니다.</p></div></section>
 
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">모듈 5: 시네마틱 촬영</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    <strong>시간:</strong> 4시간 | <strong>내용:</strong>
-                </p>
-                <ul style="color:#c6c6c6; margin-top:8px; padding-left:20px;">
-                    <li>영화 같은 구도 및 움직임</li>
-                    <li>부동산 마케팅 촬영</li>
-                    <li>웨딩/이벤트 촬영 기법</li>
-                    <li>조명 활용 및 자동 노출 제어</li>
-                </ul>
-            </div>
+    <section class="education-process education-light"><div class="education-wrap"><div class="education-heading education-reveal"><div><p class="education-label education-label-dark">06 / TRAINING PROCESS</p><h2>FROM FIRST FLIGHT<br><em>TO PROFESSIONAL</em></h2></div><p>상담에서 다음 비행까지<br>교육의 흐름을 함께 설계합니다.</p></div><div class="education-process-line education-reveal"><div class="education-process-progress"></div><article><b>01</b><small>CONSULT</small><h3>상담</h3><p>교육 목적 및 현재 수준 상담</p></article><article><b>02</b><small>LEARN</small><h3>교육</h3><p>이론 및 기본 교육</p></article><article><b>03</b><small>FLIGHT</small><h3>비행</h3><p>기본 조종 및 비행 실습</p></article><article><b>04</b><small>PRACTICE</small><h3>실습</h3><p>실전 상황 기반 교육</p></article><article><b>05</b><small>CERTIFY</small><h3>자격</h3><p>다음 단계와 자격 준비</p></article></div></div></section>
 
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">모듈 6: 기초 영상 편집</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    <strong>시간:</strong> 4시간 | <strong>내용:</strong>
-                </p>
-                <ul style="color:#c6c6c6; margin-top:8px; padding-left:20px;">
-                    <li>편집 소프트웨어 기초 (DaVinci Resolve, Premiere)</li>
-                    <li>영상 컷 편집 및 전환</li>
-                    <li>자막 및 텍스트 추가</li>
-                    <li>기초 컬러 그레이딩</li>
-                </ul>
-            </div>
-        </section>
+    <section class="education-practical education-dark"><div class="education-practical-image"><img src="img/오산천.png" alt="드론으로 바라본 실제 비행 현장" loading="lazy"></div><div class="education-practical-overlay"></div><div class="education-wrap education-practical-content education-reveal"><p class="education-label">07 / PRACTICAL TRAINING</p><h2>KNOWLEDGE IS ONLY<br>THE <em>BEGINNING.</em></h2><p>배운 것을 실제 비행으로. 현장에서 필요한 판단과 움직임을 반복해서 익힙니다.</p><div class="education-practical-tags"><span>FLIGHT</span><span>CONTROL</span><span>SAFETY</span><span>FILMING</span><span>FIELD</span></div></div></section>
 
-        <section style="margin-top:40px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.1); text-align:left;">
-            <h2>고급 FPV 드론 교육</h2>
-            <p style="line-height:1.8; color:#c6c6c6; margin:12px 0;">
-                FPV 고글을 사용하는 극도의 역동적인 비행 기술을 배웁니다.
-            </p>
-
-            <h3 style="margin-top:20px; color:#ffffff;">FPV 과정 (4-6일)</h3>
-            
-            <div style="margin-top:20px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">모듈 7: FPV 기초</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    <strong>시간:</strong> 2시간 | <strong>내용:</strong>
-                </p>
-                <ul style="color:#c6c6c6; margin-top:8px; padding-left:20px;">
-                    <li>FPV 고글 및 송수신기 원리</li>
-                    <li>FPV 기체 구조 (레이싱 드론 vs 영상 FPV)</li>
-                    <li>배터리 및 충전 관리</li>
-                    <li>안전 규정 및 보험</li>
-                </ul>
-            </div>
-
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">모듈 8: 1인칭 비행</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    <strong>시간:</strong> 5시간 | <strong>내용:</strong>
-                </p>
-                <ul style="color:#c6c6c6; margin-top:8px; padding-left:20px;">
-                    <li>FPV 고글 적응 훈련</li>
-                    <li>고속 비행 및 회전 기동</li>
-                    <li>저공 비행 (나무, 건물 주변)</li>
-                    <li>실내 비행 (스튜디오, 창고)</li>
-                </ul>
-            </div>
-
-            <div style="margin-top:12px; padding:15px; background:rgba(255,255,255,0.05); border-radius:8px;">
-                <h4 style="color:#ffffff; margin:0 0 10px 0;">모듈 9: FPV 영상촬영</h4>
-                <p style="color:#c6c6c6; margin:0; line-height:1.7;">
-                    <strong>시간:</strong> 4시간 | <strong>내용:</strong>
-                </p>
-                <ul style="color:#c6c6c6; margin-top:8px; padding-left:20px;">
-                    <li>FPV 영상의 특성 이해</li>
-                    <li>영화적 움직임 구성</li>
-                    <li>드라마틱 카메라 워크</li>
-                    <li>안정화 및 고급 편집</li>
-                </ul>
-            </div>
-        </section>
-
-        <section style="margin-top:40px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.1); text-align:left;">
-            <h3 style="color:#ffffff;">등록 및 일정</h3>
-            <p style="color:#c6c6c6; line-height:1.8;">
-                개별 상담을 통해 맞춤형 교육 일정을 구성해 드립니다.<br>
-                온라인 문의 페이지에서 원하는 교육 과정을 선택하고 예약해 주세요.
-            </p>
-        </section>
-
-        <div style="text-align:center; margin-top:50px; margin-bottom:40px;">
-            <a href="index.html#estimate" style="display:inline-block; padding:12px 24px; background:white; color:black; text-decoration:none; border-radius:30px; font-weight:bold; cursor:pointer; transition:all 0.3s;">문의하러 가기</a>
-        </div>
-    </div>
+    <section id="inquiry" class="education-contact education-light"><div class="education-wrap education-reveal"><p class="education-label education-label-dark">08 / EDUCATION INQUIRY</p><h2>READY TO<br><em>FLY?</em></h2><p class="education-contact-ko">처음 시작하는 드론 조종부터 자격증 취득과 전문 실무 교육까지 목적에 맞는 교육 과정을 상담해드립니다.</p><a class="education-button" href="index.html#contact">교육 문의하기 <span>↗</span></a></div></section>
 </main>
+<footer class="footer education-footer"><div class="footer-container"><div class="footer-brand"><h3>Zeta Persei DRONE STUDIO</h3><p>Aerial filming and cinematic production for brands, places, and events.</p></div><div class="footer-links"><h4>Quick Menu</h4><a href="about.html">About</a><a href="greeting.html">Greetings</a><a href="directions.html">Directions</a><a href="index.html#portfolio">Portfolio</a><a href="index.html#contact">Contact</a></div><div class="footer-contact"><h4>Contact</h4><p>Email. zeta794j@gmail.com</p><p>Tel. 010-1234-5678</p><p>Seoul, Korea</p></div></div><p class="copy">&copy; 2026 Zeta Persei DRONE STUDIO. All rights reserved.</p></footer>
+<script src="script.js"></script>
+<script src="education-page.js"></script>
 </body>
 </html>
